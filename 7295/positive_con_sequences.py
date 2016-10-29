@@ -29,7 +29,7 @@ while True:
     derived = original[:]
     index_of_unknown = original.index(-1)
 
-    # check arithmetic sequence
+    # arithmetic sequence
     if index_of_unknown < 2:
         diff = derived[3] - derived[2]
         derived[1] = derived[2] - diff
@@ -44,7 +44,7 @@ while True:
             print(derived[index_of_unknown])
             continue
 
-    # check geometric sequence
+    # geometric sequence
     if index_of_unknown < 2:
         factor = int(derived[3] / derived[2])
         derived[1] = int(derived[2] / factor)
