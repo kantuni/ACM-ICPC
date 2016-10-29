@@ -12,11 +12,7 @@ def is_equal(a, b, ignore):
     a, b = a[:], b[:]
     del a[ignore]
     del b[ignore]
-
-    if a == b:
-        return True
-    else:
-        return False
+    return True if a == b else False
 
 
 while True:
