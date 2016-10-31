@@ -38,23 +38,26 @@ if __name__ == '__main__':
             derived[3] = derived[2] + diff
 
         if is_equal(original, derived, index_of_unknown):
+            print('arithmetic', derived)
             if 1 <= derived[index_of_unknown] <= 1000000:
-                print(derived[index_of_unknown])
+                print(int(derived[index_of_unknown]))
                 continue
 
         # geometric sequence
         if index_of_unknown < 2:
-            factor = int(derived[3] / derived[2])
-            derived[1] = int(derived[2] / factor)
-            derived[0] = int(derived[1] / factor)
+            factor = derived[3] / derived[2]
+            derived[1] = derived[2] / factor
+            derived[0] = derived[1] / factor
         else:
-            factor = int(derived[1] / derived[0])
+            factor = derived[1] / derived[0]
             derived[2] = derived[1] * factor
             derived[3] = derived[2] * factor
 
         if is_equal(original, derived, index_of_unknown):
-            if 1 <= derived[index_of_unknown] <= 1000000:
-                print(derived[index_of_unknown])
-                continue
+            print('geometric', derived)
+            if derived[index_of_unknown] == int(derived[index_of_unknown]):  # 5 == 5.0
+                if 1 <= derived[index_of_unknown] <= 1000000:
+                    print(int(derived[index_of_unknown]))
+                    continue
 
         print(-1)
