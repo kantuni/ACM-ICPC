@@ -28,33 +28,31 @@ if __name__ == '__main__':
         index_of_unknown = original.index(-1)
 
         # arithmetic sequence
-        if index_of_unknown < 2:
-            diff = derived[3] - derived[2]
-            derived[1] = derived[2] - diff
-            derived[0] = derived[1] - diff
-        else:
+        if index_of_unknown > 1:
             diff = derived[1] - derived[0]
             derived[2] = derived[1] + diff
             derived[3] = derived[2] + diff
+        else:
+            diff = derived[3] - derived[2]
+            derived[1] = derived[2] - diff
+            derived[0] = derived[1] - diff
 
         if is_equal(original, derived, index_of_unknown):
-            print('arithmetic', derived)
             if 1 <= derived[index_of_unknown] <= 1000000:
-                print(int(derived[index_of_unknown]))
+                print(derived[index_of_unknown])
                 continue
 
         # geometric sequence
-        if index_of_unknown < 2:
-            factor = derived[3] / derived[2]
-            derived[1] = derived[2] / factor
-            derived[0] = derived[1] / factor
-        else:
+        if index_of_unknown > 1:
             factor = derived[1] / derived[0]
             derived[2] = derived[1] * factor
             derived[3] = derived[2] * factor
+        else:
+            factor = derived[3] / derived[2]
+            derived[1] = derived[2] / factor
+            derived[0] = derived[1] / factor
 
         if is_equal(original, derived, index_of_unknown):
-            print('geometric', derived)
             if derived[index_of_unknown] == int(derived[index_of_unknown]):  # 5 == 5.0
                 if 1 <= derived[index_of_unknown] <= 1000000:
                     print(int(derived[index_of_unknown]))
