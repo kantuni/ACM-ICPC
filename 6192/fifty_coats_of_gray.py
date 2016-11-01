@@ -24,6 +24,5 @@ if __name__ == '__main__':
             m -= 1
 
         painted_area = 2*h*(l + w) + l*w
-        print(painted_area)
         cans = math.ceil((painted_area - not_painted_area) * n / area)
         print(cans)
