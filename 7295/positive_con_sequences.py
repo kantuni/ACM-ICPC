@@ -17,8 +17,7 @@ def is_equal(a, b, ignore):
 
 if __name__ == '__main__':
     while True:
-        sequence = input()
-        original = sequence.split()
+        original = input().split()
         original = [int(s) for s in original]
 
         if original == [-1, -1, -1, -1]:
