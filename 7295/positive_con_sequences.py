@@ -56,5 +56,6 @@ if __name__ == '__main__':
                 if 1 <= derived[index_of_unknown] <= 1000000:
                     print(int(derived[index_of_unknown]))
                     continue
-
+        
+        # neither
         print(-1)
