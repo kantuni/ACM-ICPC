@@ -17,12 +17,12 @@ if __name__ == '__main__':
         n2 = params[4]
 
         y = 0.01
-        while y < x:
-            sin_a = y / math.sqrt(y**2 + d**2)
-            sin_b = (x - y) / math.sqrt(h**2 + (x - y)**2)
+        while True:
+            sin_a = y / math.sqrt(y*y + d*d)
+            sin_b = (x-y) / math.sqrt(h*h + (x-y)*(x-y))
 
             if math.isclose(sin_a * n2, sin_b * n1, rel_tol=1e-04):
-                answer = round(math.atan(d / y) * (180 / math.pi), 2)
+                answer = round(math.degrees(math.atan(d / y)), 2)
                 print('{:.2f}'.format(answer))
                 break
 
