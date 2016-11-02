@@ -11,9 +11,9 @@ def find_y(start, end):
         sin(a) = y/sqrt(y^2 + d^2)
         sin(b) = sqrt(h^2 + (x-y)^2)/(x-y)
 
-    :param start:
-    :param end:
-    :return:
+    :param start: {float}
+    :param end: {float}
+    :return: {float} value of y
     """
     y = (start + end) / 2
     sin_a = y / math.sqrt(y * y + d * d)
