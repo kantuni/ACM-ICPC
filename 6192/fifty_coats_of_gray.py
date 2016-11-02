@@ -23,6 +23,6 @@ if __name__ == '__main__':
             not_painted_area += int(windows_and_doors[0]) * int(windows_and_doors[1])
             m -= 1
 
-        painted_area = 2*h*(l + w) + l*w
+        painted_area = 2 * h * (l + w) + l * w
         cans = math.ceil((painted_area - not_painted_area) * n / area)
         print(cans)
