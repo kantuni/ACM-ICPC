@@ -5,8 +5,8 @@ def is_equal(a, b, ignore):
     """
     Determine if a is equal to b ignoring an element with the given index
 
-    :param a: {list} a
-    :param b: {list} b
+    :param a: {list}
+    :param b: {list}
     :param ignore: {int} index of an element to ignore
     :return: True or False
     """
