@@ -53,7 +53,7 @@ if __name__ == '__main__':
             derived[0] = derived[1] / factor
 
         if is_equal(original, derived, index_of_unknown):
-            if derived[index_of_unknown] == int(derived[index_of_unknown]):  # 5 == 5.0
+            if derived[index_of_unknown] == int(derived[index_of_unknown]):  # 5.0 == 5
                 if 1 <= derived[index_of_unknown] <= 1000000:
                     print(int(derived[index_of_unknown]))
                     continue
