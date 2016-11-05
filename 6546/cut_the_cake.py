@@ -182,25 +182,16 @@ if __name__ == '__main__':
         for l in lines:
             # only lines that intersect the circle
             if c.line_intersects_circle(l):
-                parallel = True
-                for pl in processed_lines:
-                    if not l.is_parallel(pl):
-                        parallel = False
-                        break
-
-                # if a line doesn't intersect other lines inside the circle (is parallel)
-                if parallel:
-                    count += 1
                 # if a line intersects other lines inside the circle
-                else:
-                    for pl in processed_lines:
-                        lip = l.point_of_intersection(pl)  # line intersection point
+                for pl in processed_lines:
+                    lip = l.point_of_intersection(pl)  # line intersection point
+                    if lip:
                         # point inside the circle
                         if (lip.x - c.center.x) ** 2 + (lip.y - c.center.y) ** 2 < c.r ** 2:
                             count += 1
 
-                    # count = # of intersections inside the circle + 1
-                    count += 1
+                # count = # of intersections inside the circle + 1
+                count += 1
 
                 # keep the lines we already processed
                 processed_lines.append(l)
