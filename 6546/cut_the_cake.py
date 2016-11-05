@@ -183,7 +183,7 @@ if __name__ == '__main__':
             # only lines that intersect the circle
             if c.line_intersects_circle(l):
                 for pl in processed_lines:
-                    lip = l.point_of_intersection(pl)  # line intersection point
+                    lip = l.point_of_intersection(pl)  # lines intersection point
                     if lip:
                         # point inside the circle
                         if (lip.x - c.center.x) ** 2 + (lip.y - c.center.y) ** 2 < c.r ** 2:
