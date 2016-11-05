@@ -7,32 +7,47 @@ class Point:
         self.y = y
 
     def __repr__(self):
-        return '(' + str(self.x) + ', ' + str(self.y) + ')'
+        return '({0}, {1})'.format(self.x, self.y)
 
 
 class Line:
-    def __init__(self, p1, p2):
+    def __init__(self, p1, p2, a=None, b=None):
         self.p1 = p1
         self.p2 = p2
-        if p1.x != p2.x:  # y = ax + b
-            self.a = (p2.y - p1.y) / (p2.x - p1.x)
-            self.b = (p1.y * p2.x - p2.y * p1.x) / (p2.x - p1.x)
+        if p1 and p2:
+            if p1.x != p2.x:  # y = ax + b
+                self.a = (p2.y - p1.y) / (p2.x - p1.x)
+                self.b = (p1.y * p2.x - p2.y * p1.x) / (p2.x - p1.x)
+            else:
+                self.a = None  # y = 0
+                self.b = 0  # y = b
+        elif (p1 or p2) and b is not None:
+            self.a = a
+            self.b = b
         else:
-            self.a = None  # y = 0
-            self.b = 0  # y = b
+            raise ValueError("Line cannot be constructed.")
 
     def __repr__(self):
         if self.a is None:
             return 'y = 0'
         elif self.a == 0:
-            return 'y = ' + str(self.b)
+            return 'y = {0}'.format(self.b)
         else:
             if self.b == 0:
-                return 'y = ' + str(self.a) + 'x'
+                return 'y = {0}x'.format(self.a)
             if self.b < 0:
-                return 'y = ' + str(self.a) + 'x - ' + str(abs(self.b))
+                return 'y = {0}x - {1}'.format(self.a, abs(self.b))
             else:
-                return 'y = ' + str(self.a) + 'x + ' + str(self.b)
+                return 'y = {0}x + {1}'.format(self.a, self.b)
+
+    def calculate_x(self, y):
+        """
+        Calculate the x coordinate given the y coordinate of the line
+
+        :param y: {int}
+        :return: {int}
+        """
+        return (y - self.b) / self.a if self.a else self.p1.x
 
     def calculate_y(self, x):
         """
@@ -50,14 +65,64 @@ class Line:
         :param other: {Line}
         :return: {bool}
         """
-        return self.a == other.a  # assuming they are not the same
+        if self and other:  # why?
+            return self.a == other.a  # assuming they are not the same
+        return False
+
+    def point_of_intersection(self, other):
+        """
+        Return the point of intersection of two lines
+
+        :param other: {Line}
+        :return: {Point} of intersection or None if they are parallel
+        """
+        if self.is_parallel(other):
+            return None
+
+        if self.a is not None and other.a is not None:
+            x = (other.b - self.b) / (self.a - other.a)
+            y = self.a * x + self.b
+        elif self.a is None:
+            x = self.p1.x
+            y = other.a * x + other.b
+        else:
+            x = other.p1.x
+            y = self.a * x + self.b
+
+        return Point(x, y)
+
+    def perpendicular(self, p):
+        """
+        Perpendicular from the given point to the line
+
+        :param p: {Point}
+        :return: {Line} perpendicular line or None if the point is on the line
+        """
+        # if the point is on the line
+        if self.a is not None:
+            if p.y == self.a * p.x + self.b:
+                return None
+
+            if self.a == 0:
+                perpendicular = Line(p, None, None, p.x)
+            else:
+                b = p.y + p.x * (self.p2.x - self.p1.x) / (self.p2.y - self.p1.y)
+                perpendicular = Line(p, None, -1 / self.a, b)
+        else:
+            if p.x == self.p1.x:
+                return None
+            perpendicular = Line(p, None, 0, p.y)
+
+        return perpendicular
 
 
 class Circle:
-    def __init__(self, x, y, r):
-        self.x = x
-        self.y = y
+    def __init__(self, center, r):
+        self.center = center
         self.r = r
+
+    def __repr__(self):
+        return '(x-{0})^2 + (y-{1})^2 = {2}^2'.format(self.center.x, self.center.y, self.r)
 
     def point_in_circle(self, point):
         """
@@ -66,7 +131,7 @@ class Circle:
         :param point: {Point}
         :return: {bool}
         """
-        return True if (point.x - self.x) ** 2 + (point.y - self.y) ** 2 <= self.r ** 2 else False
+        return True if (point.x - self.center.x) ** 2 + (point.y - self.center.y) ** 2 <= self.r ** 2 else False
 
     def line_intersects_circle(self, line):
         """
@@ -75,23 +140,14 @@ class Circle:
         :param line: {Line}
         :return: {bool}
         """
-        # use perpendicular instead
-        for x in range(-1000, 1001):
-            y = line.calculate_y(x)
-            print(Point(x, y))
-            if self.point_in_circle(Point(x, y)):
+        dist = line.perpendicular(self.center)
+        if dist is None:
+            return True
+        else:
+            intersection = line.point_of_intersection(dist)
+            if self.point_in_circle(intersection):
                 return True
-        return False
-
-
-c = Circle(16, 1, 7)
-# l1 = Line(Point(-15, -9), Point(14, -11))
-l2 = Line(Point(-4, 30), Point(-3, -20))
-# l3 = Line(Point(-20, 12), Point(-10, 7))
-# l4 = Line(Point(-20, 12), Point(-10, 7))
-
-# print(l1, c.line_intersects_circle(l1))
-print(l2, c.line_intersects_circle(l2))
+            return False
 
 
 if __name__ == '__main__':
@@ -113,8 +169,7 @@ if __name__ == '__main__':
             # no cuts
             print(count)
 
-        c = Circle(cx, cy, cr)
-
+        c = Circle(Point(cx, cy), cr)
         lines = []
         while n > 0:
             x1, y1, x2, y2 = input().split()
@@ -124,10 +179,8 @@ if __name__ == '__main__':
             n -= 1
 
         processed_lines = []
-        points_inside_the_circle = []
-
         for l in lines:
-            # remove lines that don't intersect the circle
+            # only lines that intersect the circle
             if c.line_intersects_circle(l):
                 parallel = True
                 for pl in processed_lines:
@@ -140,24 +193,15 @@ if __name__ == '__main__':
                     count += 1
                 # if a line intersects other lines inside the circle
                 else:
-                    # find all points of the line inside the circle
-                    for x in range(-1000, 1001):
-                        y = l.get_y_coordinate(x)
-                        if c.point_in_circle(Point(x, y)):
-                            # point inside the circle
-                            if (x - c.x) ** 2 + (y - c.y) ** 2 < c.r ** 2:
-                                if Point(x, y) in points_inside_the_circle:
-                                    count += 1
-                                else:
-                                    points_inside_the_circle.append(Point(x, y))
+                    for pl in processed_lines:
+                        lip = l.point_of_intersection(pl)  # line intersection point
+                        # point inside the circle
+                        if (lip.x - c.center.x) ** 2 + (lip.y - c.center.y) ** 2 < c.r ** 2:
+                            count += 1
 
                     # count = # of intersections inside the circle + 1
                     count += 1
 
                 # keep the lines we already processed
                 processed_lines.append(l)
-
-        print(lines)
-        print(processed_lines)
-
         print(count)
