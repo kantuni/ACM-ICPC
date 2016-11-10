@@ -41,5 +41,6 @@ if __name__ == '__main__':
         n1 = params[3]
         n2 = params[4]
 
+        # TODO: search for φ instead
         answer = 90 if x == 0 else round(math.degrees(math.atan(d / find_y(0, x))), 2)
         print('{:.2f}'.format(answer))
