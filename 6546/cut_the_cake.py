@@ -210,4 +210,5 @@ if __name__ == '__main__':
 
                 # keep the processed lines that intersected the circle
                 processed_lines.append(l)
+        
         print(count)
