@@ -58,12 +58,7 @@ class Line:
         elif self.m == 0:
             return 'y = {0}, x = 0'.format(self.b)
         else:
-            if self.b == 0:
-                return 'y = {0}x'.format(self.m)
-            if self.b < 0:
-                return 'y = {0}x - {1}'.format(self.m, abs(self.b))
-            else:
-                return 'y = {0}x + {1}'.format(self.m, self.b)
+            return 'y = {0}x + {1}'.format(self.m, self.b)
 
     def is_parallel(self, other):
         """
