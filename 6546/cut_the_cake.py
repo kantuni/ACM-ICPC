@@ -23,6 +23,14 @@ class Line:
         self.b = b
         self.a = a
 
+    def __repr__(self):
+        if self.m is None:
+            return 'y = 0, x = {0}'.format(self.a)
+        elif self.m == 0:
+            return 'y = {0}'.format(self.b)
+        else:
+            return 'y = {0}x + {1}'.format(self.m, self.b)
+
     @classmethod
     def from_two_points(cls, p, q):
         """
@@ -52,14 +60,6 @@ class Line:
 
         return cls(m, b, a)
 
-    def __repr__(self):
-        if self.m is None:
-            return 'y = 0, x = {0}'.format(self.a)
-        elif self.m == 0:
-            return 'y = {0}, x = 0'.format(self.b)
-        else:
-            return 'y = {0}x + {1}'.format(self.m, self.b)
-
     def is_parallel(self, other):
         """
         Check if 2 lines are parallel
@@ -85,10 +85,10 @@ class Line:
             y = self.m * x + self.b
         elif self.m is None:
             x = self.a
-            y = other.a * x + other.b
+            y = other.m * x + other.b
         else:
             x = other.a
-            y = self.a * x + self.b
+            y = self.m * x + self.b
 
         return Point(x, y)
 
@@ -145,12 +145,13 @@ class Circle:
         :param line: {Line}
         :return: {bool}
         """
-        dist = line.perpendicular(self.center)
-        # line through a circle center
-        if dist is None:
+        distance = line.perpendicular(self.center)
+        # line through a center of a circle
+        if distance is None:
             return True
         else:
-            intersection = line.point_of_intersection(dist)
+            intersection = line.point_of_intersection(distance)
+            # assuming they are not any tangent lines
             if self.point_in_circle(intersection):
                 return True
             return False
@@ -197,7 +198,7 @@ if __name__ == '__main__':
                     lip = l.point_of_intersection(pl)  # lines intersection point
                     if lip:
                         # check if intersection point is inside the circle
-                        if (lip.x - c.center.x) ** 2 + (lip.y - c.center.y) ** 2 < c.r ** 2:
+                        if c.point_in_circle(lip):
                             count += 1
 
                 # count = # of intersections inside the circle + 1
