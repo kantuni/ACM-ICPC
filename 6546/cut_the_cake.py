@@ -1,5 +1,7 @@
 """ Created by Henrikh Kantuni on 11/3/16 """
 
+# TODO: solve the problem using only functions (without classes)
+
 
 class Point:
     def __init__(self, x, y):
