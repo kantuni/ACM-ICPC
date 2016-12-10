@@ -1,7 +1,5 @@
 """ Created by Henrikh Kantuni on 11/3/16 """
 
-# TODO: solve the problem using only functions (without classes)
-
 
 class Point:
     def __init__(self, x, y):
@@ -42,7 +40,7 @@ class Line:
         :param q: {Point}
         :return: {Line}
         """
-        m = None if p.x == q.x else (p.y - q.y) / (p.x - q.x)
+        m = None if p.x == q.x else (q.y - p.y) / (q.x - p.x)
         b = 0 if m is None else p.y - m * p.x
         a = p.x if m is None else (0 if m == 0 else -b / m)
 
@@ -147,12 +145,12 @@ class Circle:
         :param line: {Line}
         :return: {bool}
         """
-        distance = line.perpendicular(self.center)
+        perpendicular = line.perpendicular(self.center)
         # line through a center of a circle
-        if distance is None:
+        if perpendicular is None:
             return True
         else:
-            intersection = line.point_of_intersection(distance)
+            intersection = line.point_of_intersection(perpendicular)
             # assuming they are not any tangent lines
             if self.point_in_circle(intersection):
                 return True
@@ -208,5 +206,5 @@ if __name__ == '__main__':
 
                 # keep the processed lines that intersected the circle
                 processed_lines.append(l)
-        
+
         print(count)
