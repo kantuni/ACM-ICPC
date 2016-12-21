@@ -136,7 +136,7 @@ class Circle:
         :param point: {Point}
         :return: {bool}
         """
-        return True if (point.x - self.center.x) ** 2 + (point.y - self.center.y) ** 2 <= self.r ** 2 else False
+        return True if (point.x - self.center.x) ** 2 + (point.y - self.center.y) ** 2 < self.r ** 2 else False
 
     def line_intersects_circle(self, line):
         """
@@ -195,9 +195,10 @@ if __name__ == '__main__':
             # only lines that intersect the circle
             if c.line_intersects_circle(l):
                 for pl in processed_lines:
-                    lip = l.point_of_intersection(pl)  # lines intersection point
+                    # lines intersection point
+                    lip = l.point_of_intersection(pl)
                     if lip:
-                        # check if intersection point is inside the circle
+                        # check if the intersection point is inside the circle
                         if c.point_in_circle(lip):
                             count += 1
 
@@ -207,4 +208,5 @@ if __name__ == '__main__':
                 # keep the processed lines that intersected the circle
                 processed_lines.append(l)
 
+        # print answer
         print(count)

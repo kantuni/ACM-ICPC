@@ -99,43 +99,41 @@ class Circle {
     // TODO: use Point class instead
     long double x;
     long double y;
-    long double radius;
+    long double r;
 
-    // center.x, center.y, radius
-    Circle(long double x, long double y, long double radius) {
+    // center.x, center.y, r
+    Circle(long double x, long double y, long double r) {
       this->x = x;
       this->y = y;
-      this->radius = radius;
+      this->r = r;
     }
 
     // check if a point is inside the circle
     bool point_in_circle(Point p) {
       long double temp = powl(p.x - this->x, 2);
       temp += powl(p.y - this->y, 2);
-      return temp < powl(this->radius, 2);
+      return temp < powl(this->r, 2);
     }
 
     // check if a line intersects the circle
     bool line_intersects_circle(Line l) {
       Line perpendicular = l.perpendicular(Point(this->x, this->y));
-      bool exists = isnan(perpendicular.m) && isnan(perpendicular.b) && isnan(perpendicular.a);
+      // line through the center of the circle
+      bool ltc = isnan(perpendicular.m) && isnan(perpendicular.b) && isnan(perpendicular.a);
 
-      if (exists) {
-        // line through the center of the circle
+      if (ltc) {
         return true;
       } else {
         Point intersection = l.point_of_intersection(perpendicular);
-        return isnan(intersection.x) && isnan(intersection.y) && point_in_circle(intersection);
+        return !isnan(intersection.x) && !isnan(intersection.y) && point_in_circle(intersection);
       }
     }
 };
 
 
 int main() {
-  long long r, x, y, n;
-  long long x1, y1, x2, y2;
-
   while (true) {
+    long long r, x, y, n;
     cin >> r >> x >> y >> n;
 
     // end of input
@@ -151,21 +149,44 @@ int main() {
       continue;
     }
 
-    // create a circle
-    Circle c(x, y, r);
+    long long x1, y1, x2, y2;
+    vector<Line> lines = {};
+    Circle c = Circle(x, y, r);
 
     // construct lines
-    vector<Line> lines = {};
     while (n > 0) {
       cin >> x1 >> y1 >> x2 >> y2;
       Point p = Point(x1, y1);
       Point q = Point(x2, y2);
       Line l = Line(p, q);
-      // insert a line into the lines vector
+      lines.push_back(l);
       n--;
     }
 
-  }
+    vector<Line> processed_lines = {};
+    for (auto &l: lines) {
+      // only lines that intersect the circle
+      if (c.line_intersects_circle(l)) {
+        for (auto &pl: processed_lines) {
+          // lines intersection point
+          Point lip = l.point_of_intersection(pl);
+          if (!isnan(lip.x) && !isnan(lip.y)) {
+            // check if intersection point is inside the circle
+            if (c.point_in_circle(lip)) {
+              count++;
+            }
+          }
+        }
 
-  return 0;
+        // count = # of intersections inside the circle + 1
+        count++;
+
+        // keep the processed lines that intersected the circle
+        processed_lines.push_back(l);
+      }
+    }
+
+    // print answer
+    cout << count << endl;
+  }
 }
