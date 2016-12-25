@@ -96,6 +96,7 @@ class Line {
 
 class Circle {
   public:
+    // TODO: use Point class instead
     long double x;
     long double y;
     long double r;
