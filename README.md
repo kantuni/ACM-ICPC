@@ -5,3 +5,6 @@
 - 7292 - Refract Facts - **Accepted**
 - 7295 - Positive Con Sequences - **Accepted**
 - 7348 - Talking About Numbers - **Accepted**
+
+### 2016 Mid-Atlantic Regional Programming Contest
+- Problem H: Painting the Floodwall
