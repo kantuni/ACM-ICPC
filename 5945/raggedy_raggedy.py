@@ -32,6 +32,19 @@ def minimize_total_raggedness():
 
     :return: a paragraph with a minimum total raggedness
     """
+    # 6
+    # See if we
+    # care.
+    #
+    # C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
+    #
+    # C(0, 3, 0) = min(r(0, 0) + C(1, 3, 1), r(0, 1) + C(2, 3, 1)) = min(9 + C(1, 3, 1), 0 + C(2, 3, 1)) = 10 + 1|0
+    # C(1, 3, 1) = min(r(1, 1) + C(2, 3, 2), r(1, 2) + C(3, 3, 2)) = min(16 + C(2, 3, 2), 1 + C(3, 3, 2)) = 1 + 1|0
+    # - C(2, 3, 2) = min(r(2, 2) + C(3, 3, 3), r(2, 3) + C(5, 3, 3)) = min(16 + C(3, 3, 3), infinity) = 16 + 1|0
+    # - C(3, 3, 3) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # C(3, 3, 2) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # - C(2, 3, 1) = min(r(2, 2) + C(3, 3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
+    # 
     global L, words
 
     paragraph = ''
