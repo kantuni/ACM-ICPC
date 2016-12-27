@@ -1,5 +1,9 @@
 # ACM-ICPC Problems Solutions
 
+> Champions aren't made in the gyms. Champions are made from something they have deep inside them.
+
+> \- Muhammad Ali
+
 ### 2016 Mid-Atlantic Regional Programming Contest
 - Problem H: Painting the Floodwall
 
