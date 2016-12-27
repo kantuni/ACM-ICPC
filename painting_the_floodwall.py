@@ -33,15 +33,14 @@ def max_total_length(murals):
 
 
 if __name__ == '__main__':
-    while True:
-        n = int(input())
+    n = int(input())
 
-        paintings = []
+    paintings = []
 
-        while n > 0:
-            x0, x1 = input().split()
-            paintings.append((int(x0), int(x1)))
-            n -= 1
+    while n > 0:
+        x0, x1 = input().split()
+        paintings.append((int(x0), int(x1)))
+        n -= 1
 
-        answer = max_total_length(paintings)
-        print(answer)
+    answer = max_total_length(paintings)
+    print(answer)
