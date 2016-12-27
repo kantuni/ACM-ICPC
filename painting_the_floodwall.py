@@ -11,6 +11,7 @@ def max_total_length(murals):
     Recursive formula:
     Let C(A) denote the maximum total length of the fence
     that can be painted using murals in array A that don't overlap.
+    
     Then C(A) = max(A[0][1] - A[0][0] + C(B), C(A \ A[0]),
     where B = array of murals that don't overlap with A[0]
 
