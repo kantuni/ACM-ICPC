@@ -19,7 +19,7 @@ def w(i, j):
     # remove last blank space
     width -= 1
 
-    return width if width <= L else False
+    return width if 0 < width <= L else False
 
 
 def r(i, j):
@@ -45,23 +45,34 @@ def c(i, j, k):
     :param k: line
     :return: minimum total raggedness
     """
+    # 6
+    # See if we
+    # care.
+    #
+    # C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
+    #
+    # 11 = C(0, 3, 0) = min(r(0, 0) + C(1, 3, 1), r(0, 1) + C(2, 3, 1)) = min(9 + C(1, 3, 1), 0 + C(2, 3, 1)) = 10 + 1|0
+    # 2 = C(1, 3, 1) = min(r(1, 1) + C(2, 3, 2), r(1, 2) + C(3, 3, 2)) = min(16 + C(2, 3, 2), 1 + C(3, 3, 2)) = 1 + 1|0
+    # 17 = C(2, 3, 2) = min(r(2, 2) + C(3, 3, 3), r(2, 3) + C(5, 3, 3)) = min(16 + C(3, 3, 3), infinity) = 16 + 1|0
+    # 1 = C(3, 3, 3) = min(r(3, 3) + C(4, 3, 4), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # 1 = C(3, 3, 2) = min(r(3, 3) + C(4, 3, 3), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # 17 = C(2, 3, 1) = min(r(2, 2) + C(3, 3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
+    #
     raggedness = []
-    l = i
-
-    print(w(i, l), i, l, k)
 
     if i > j:
-        return 9999999999999999999
+        saved['{0}, {1}, {2}'.format(i, j, k)] = 0
+        return 0
 
-    while w(i, l):
-        raggedness.append(r(i, l) + c(l + 1, j, k + 1))
+    l = i
+    while w(i, l) and l <= j:
+        if saved.get('{0}, {1}, {2}'.format(i, j, k)):
+            raggedness.append(r(i, l) + saved['{0}, {1}, {2}'.format(i, j, k)])
+        else:
+            raggedness.append(r(i, l) + c(l + 1, j, k + 1))
         l += 1
 
-    if not raggedness:
-        return 9999999999999999999
-
-    print(raggedness)
-
+    saved['{0}, {1}, {2}'.format(i, j, k)] = min(raggedness)
     return min(raggedness)
 
 
@@ -75,21 +86,6 @@ def minimize_total_raggedness():
 
     :return: a paragraph with a minimum total raggedness
     """
-    # 6
-    # See if we
-    # care.
-    #
-    # C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
-    #
-    # C(0, 3, 0) = min(r(0, 0) + C(1, 3, 1), r(0, 1) + C(2, 3, 1)) = min(9 + C(1, 3, 1), 0 + C(2, 3, 1)) = 10 + 1|0
-    # C(1, 3, 1) = min(r(1, 1) + C(2, 3, 2), r(1, 2) + C(3, 3, 2)) = min(16 + C(2, 3, 2), 1 + C(3, 3, 2)) = 1 + 1|0
-    # - C(2, 3, 2) = min(r(2, 2) + C(3, 3, 3), r(2, 3) + C(5, 3, 3)) = min(16 + C(3, 3, 3), infinity) = 16 + 1|0
-    # - C(3, 3, 3) = min(r(3, 3) + 0, infinity) = 1 | 0
-    # C(3, 3, 2) = min(r(3, 3) + 0, infinity) = 1 | 0
-    # - C(2, 3, 1) = min(r(2, 2) + C(3, 3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
-    #
-    global L, words
-
     paragraph = ''
     return paragraph
 
@@ -103,6 +99,7 @@ if __name__ == '__main__':
 
         words = []
         number_of_lines = 250
+        saved = {}
 
         while number_of_lines > 0:
             words_in_line = input().split()
@@ -113,4 +110,5 @@ if __name__ == '__main__':
             number_of_lines -= 1
 
         print(c(0, len(words) - 1, 0))
+        print(saved)
         print('===')
