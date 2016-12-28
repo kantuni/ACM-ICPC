@@ -22,6 +22,49 @@ def w(i, j):
     return width if width <= L else False
 
 
+def r(i, j):
+    """
+    Define the raggedness of a line containing words i though j as
+    r(i, j) = (L − w(i, j))**2
+
+    :param i: starting position
+    :param j: ending position
+    :return: r(i, j) value
+    """
+    global L
+    return (L - w(i, j)) ** 2
+
+
+def c(i, j, k):
+    """
+    Let C(i, j, k) denote minimum raggedness of a line k containing words i to j
+    Then C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
+
+    :param i: starting position
+    :param j: ending position
+    :param k: line
+    :return: minimum total raggedness
+    """
+    raggedness = []
+    l = i
+
+    print(w(i, l), i, l, k)
+
+    if i > j:
+        return 9999999999999999999
+
+    while w(i, l):
+        raggedness.append(r(i, l) + c(l + 1, j, k + 1))
+        l += 1
+
+    if not raggedness:
+        return 9999999999999999999
+
+    print(raggedness)
+
+    return min(raggedness)
+
+
 def minimize_total_raggedness():
     """
     DP
@@ -44,7 +87,7 @@ def minimize_total_raggedness():
     # - C(3, 3, 3) = min(r(3, 3) + 0, infinity) = 1 | 0
     # C(3, 3, 2) = min(r(3, 3) + 0, infinity) = 1 | 0
     # - C(2, 3, 1) = min(r(2, 2) + C(3, 3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
-    # 
+    #
     global L, words
 
     paragraph = ''
@@ -69,5 +112,5 @@ if __name__ == '__main__':
             words.extend(words_in_line)
             number_of_lines -= 1
 
-        print(minimize_total_raggedness())
+        print(c(0, len(words) - 1, 0))
         print('===')
