@@ -35,13 +35,12 @@ def r(i, j):
     return (L - w(i, j)) ** 2
 
 
-def c(i, j, k):
+def c(i, k, last):
     """
-    Let C(i, j, k) denote minimum raggedness of a line k containing words i to j
-    Then C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
+    Let C(i, k) denote minimum raggedness of a line k containing ith word
+    Then C(i, k) = min(r(i, i) + C(i + 1, k + 1), r(i, i + 1) + C(i + 2, k + 1), ...)
 
     :param i: starting position
-    :param j: ending position
     :param k: line
     :return: minimum total raggedness
     """
@@ -49,30 +48,33 @@ def c(i, j, k):
     # See if we
     # care.
     #
-    # C(i, j, k) = min(r(i, i) + C(i + 1, j, k + 1), r(i, i + 1) + C(i + 2, j, k + 1), ...)
+    # C(i, k) = min(r(i, i) + C(i + 1, k + 1), r(i, i + 1) + C(i + 2, k + 1), ...)
     #
-    # 11 = C(0, 3, 0) = min(r(0, 0) + C(1, 3, 1), r(0, 1) + C(2, 3, 1)) = min(9 + C(1, 3, 1), 0 + C(2, 3, 1)) = 10 + 1|0
-    # 2 = C(1, 3, 1) = min(r(1, 1) + C(2, 3, 2), r(1, 2) + C(3, 3, 2)) = min(16 + C(2, 3, 2), 1 + C(3, 3, 2)) = 1 + 1|0
-    # 17 = C(2, 3, 2) = min(r(2, 2) + C(3, 3, 3), r(2, 3) + C(5, 3, 3)) = min(16 + C(3, 3, 3), infinity) = 16 + 1|0
-    # 1 = C(3, 3, 3) = min(r(3, 3) + C(4, 3, 4), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
-    # 1 = C(3, 3, 2) = min(r(3, 3) + C(4, 3, 3), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
-    # 17 = C(2, 3, 1) = min(r(2, 2) + C(3, 3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
+    # 11 = C(0, 0) = min(r(0, 0) + C(1, 1), r(0, 1) + C(2, 1)) = min(9 + C(1, 1), 0 + C(2, 1)) = 10 + 1|0
+    # 2 = C(1, 1) = min(r(1, 1) + C(2, 2), r(1, 2) + C(3, 2)) = min(16 + C(2, 2), 1 + C(3, 2)) = 1 + 1|0
+    # 17 = C(2, 2) = min(r(2, 2) + C(3, 3), r(2, 3) + C(5, 3)) = min(16 + C(3, 3), infinity) = 16 + 1|0
+    # 1 = C(3, 3) = min(r(3, 3) + C(4, 4), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # 1 = C(3, 2) = min(r(3, 3) + C(4, 3), infinity) = min(r(3, 3) + 0, infinity) = 1 | 0
+    # 17 = C(2, 1) = min(r(2, 2) + C(3, 2), r(2, 3) + 0) = min(16 + 1|0, infinity) = 16 + 1|0
     #
+    global words, counter, words_on_lines
     raggedness = []
 
-    if i > j:
-        saved['{0}, {1}, {2}'.format(i, j, k)] = 0
+    if i > len(words) - 1 - last:
+        # counter += 1
         return 0
 
     l = i
-    while w(i, l) and l <= j:
-        if saved.get('{0}, {1}, {2}'.format(i, j, k)):
-            raggedness.append(r(i, l) + saved['{0}, {1}, {2}'.format(i, j, k)])
+    while w(i, l) and l <= len(words) - 1 - last:
+        if saved.get('{0}, {1}'.format(i, k)):
+            raggedness.append(r(i, l) + saved['{0}, {1}'.format(i, k)][0])
         else:
-            raggedness.append(r(i, l) + c(l + 1, j, k + 1))
+            raggedness.append(r(i, l) + c(l + 1, k + 1, last))
         l += 1
 
-    saved['{0}, {1}, {2}'.format(i, j, k)] = min(raggedness)
+    saved['{0}, {1}'.format(i, k)] = (min(raggedness), counter)
+    words_on_lines[i] = k
+    counter += 1
     return min(raggedness)
 
 
@@ -86,8 +88,48 @@ def minimize_total_raggedness():
 
     :return: a paragraph with a minimum total raggedness
     """
-    paragraph = ''
-    return paragraph
+    global words, saved
+
+
+    used = []
+    answer = ''
+
+    i = 0
+    while i < len(words):
+        word_index, line_index = saved[i].split(', ')
+        used.append((int(word_index), int(line_index)))
+        i += 1
+
+    used.sort(key=lambda item: item[0])
+
+    print(used)
+
+    line_index = 0
+    for word in used:
+        if word[1] > line_index:
+            answer += '\n'
+            line_index += 1
+        if word[0] < len(words):
+            answer += words[word[0]] + ' '
+    answer = answer[:-1]
+
+    return answer
+
+
+def a():
+    global values, saved
+
+    i = 1
+    length = len(words[len(words) - i])
+    while length < 25:
+        values.append((c(0, 0, i), saved))
+        saved = {}
+        i += 1
+        length += 1 + len(words[len(words) - i])
+
+    values = sorted(values, key=lambda item: item[0])
+
+    return values[0]
 
 
 if __name__ == '__main__':
@@ -98,8 +140,11 @@ if __name__ == '__main__':
             break
 
         words = []
+        words_on_lines = {}
         number_of_lines = 250
         saved = {}
+        counter = 0
+        values = []
 
         while number_of_lines > 0:
             words_in_line = input().split()
@@ -109,6 +154,13 @@ if __name__ == '__main__':
             words.extend(words_in_line)
             number_of_lines -= 1
 
-        print(c(0, len(words) - 1, 0))
-        print(saved)
+        # print(c(0, 0))
+        # print(saved)
+        # print(words_on_lines)
+        saved = a()[1]
+        c(0, 0, 1)
+        # print(saved)
+        # print(words_on_lines)
+        # saved = sorted(saved, key=lambda item: saved[item][1], reverse=True)
+        # print(minimize_total_raggedness())
         print('===')
