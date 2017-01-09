@@ -4,9 +4,6 @@
 >
 > \- Muhammad Ali
 
-![ACM ICPC]
-(http://acmgnyr.org/icpclogo_big.png)
-
 ### 2016 Mid-Atlantic Regional Programming Contest
 - Problem H: Painting the Floodwall
 
@@ -20,3 +17,6 @@
 
 ### 2012 Mid-Atlantic Regional Programming Contest
 - 6192 - Problem A: Fifty Coats of Gray - **Accepted**
+
+![ACM ICPC]
+(http://acmgnyr.org/icpclogo_big.png)
