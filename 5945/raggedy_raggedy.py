@@ -46,7 +46,7 @@ def r(i, j):
 # C(2, 1, 1) = min(r(2, 2) + C(3, 2, 1)) = min(16 + 0) = 16
 # C(3, 3, 1) = 0
 # C(3, 2, 1) = 0
-#
+
 # - Example 2 -
 # 20
 # Here are we.
@@ -68,14 +68,14 @@ def c(i, k, last):
     :param i: {int} starting position
     :param k: {int} line
     :param last: {int} number of words used in the last line
-    :return: {int} minimum total raggedness
+    :return: {tuple} minimum total raggedness and index of the minimum value (the winner)
     """
     global words
     raggedness = []
 
     # out of bounds
     if i > len(words) - 1 - last:
-        return 0
+        return 0, -1
 
     l = i
     while w(i, l) > 0 and l <= len(words) - 1 - last:
@@ -83,14 +83,13 @@ def c(i, k, last):
         if not memo.get('{0}, {1}'.format(l + 1, k + 1)):
             memo['{0}, {1}'.format(l + 1, k + 1)] = c(l + 1, k + 1, last)
         # calculate all raggedness values
-        raggedness.append(r(i, l) + memo['{0}, {1}'.format(l + 1, k + 1)])
+        raggedness.append(r(i, l) + memo['{0}, {1}'.format(l + 1, k + 1)][0])
         l += 1
 
     # find a total minimum raggedness
     minimum = min(raggedness)
-    # print(raggedness.index(minimum))
-    memo['{0}, {1}'.format(i, k)] = minimum
-    return minimum
+    memo['{0}, {1}'.format(i, k)] = minimum, raggedness.index(minimum)
+    return minimum, raggedness.index(minimum)
 
 
 def minimize_total_raggedness():
@@ -124,7 +123,49 @@ def minimize_total_raggedness():
     memo = {}
     # call minimum once again to update memo
     c(0, 0, last)
-    return minimum
+    return minimum, last
+
+
+def backtracking():
+    """
+    Build a string with a minimum total raggedness from a memo table
+
+    :return: {str} string with minimum total raggedness
+    """
+    global memo, last_line_words
+    string = ''
+
+    # start with first word, i.e. the last winner
+    i = 0
+    k = 0
+    winner_index = memo['{0}, {1}'.format(i, k)][1]
+
+    while winner_index >= 0:
+        # add words to the appropriate line
+        for word in words[i: i + winner_index + 1]:
+            string += word + ' '
+        # remove trailing space
+        string = string[:-1]
+        # move to the next line
+        string += '\n'
+
+        # move to the next winner
+        i += winner_index + 1
+        k += 1
+        winner_index = memo['{0}, {1}'.format(i, k)][1]
+
+    # if there are last line words
+    if last_line_words > 0:
+        for word in words[len(words) - last_line_words: len(words)]:
+            string += word + ' '
+        # remove trailing space
+        string = string[:-1]
+
+    # remove empty line
+    if string[-1] == '\n':
+        string = string[:-1]
+
+    return string
 
 
 if __name__ == '__main__':
@@ -147,6 +188,7 @@ if __name__ == '__main__':
             words.extend(words_in_line)
             number_of_lines -= 1
 
-        print(minimize_total_raggedness())
-        print(memo)
+        mtr, last_line_words = minimize_total_raggedness()
+        mtr_string = backtracking()
+        print(mtr_string)
         print('===')
