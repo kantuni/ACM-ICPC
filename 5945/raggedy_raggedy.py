@@ -68,7 +68,7 @@ def c(i, k, last):
     :param i: {int} starting position
     :param k: {int} line
     :param last: {int} number of words used in the last line
-    :return: {tuple} minimum total raggedness and index of the minimum value (the winner)
+    :return: {tuple} a minimum total raggedness and an index of the minimum value (the winner)
     """
     global words
     raggedness = []
@@ -140,7 +140,7 @@ def backtracking():
     k = 0
     winner_index = memo['{0}, {1}'.format(i, k)][1]
 
-    while winner_index >= 0:
+    while winner_index > -1:
         # add words to the appropriate line
         for word in words[i: i + winner_index + 1]:
             string += word + ' '
@@ -170,8 +170,10 @@ def backtracking():
 
 if __name__ == '__main__':
     while True:
+        # maximum line width
         L = int(input())
 
+        # a value of zero indicates the end of input
         if L == 0:
             break
 
@@ -185,6 +187,7 @@ if __name__ == '__main__':
             # terminate by an empty line
             if not words_in_line:
                 break
+            # add words from new line
             words.extend(words_in_line)
             number_of_lines -= 1
 
