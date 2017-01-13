@@ -197,7 +197,6 @@ if __name__ == '__main__':
             continue
 
         mtr, last_line_words = minimize_total_raggedness()
-        print(memo)
         mtr_string = backtracking()
         print(mtr_string)
         print('===')
