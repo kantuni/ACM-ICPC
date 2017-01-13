@@ -17,6 +17,11 @@ public class RaggedyRaggedy {
     private static int w(int i, int j) {
         int width = 0;
 
+        // out of bounds
+        if (words.size() < j + 1) {
+            return 0;
+        }
+
         for (String word : words.subList(i, j + 1)) {
             // length of a word + blank space
             width += word.length() + 1;
@@ -53,7 +58,7 @@ public class RaggedyRaggedy {
 
         // out of bounds
         if (i > words.size() - 1 - last) {
-            return new int[] {0, -1};
+            return new int[]{0, -1};
         }
 
         int l = i;
@@ -70,9 +75,46 @@ public class RaggedyRaggedy {
 
         // find a total minimum raggedness
         int minimum = Collections.min(raggedness);
-        memo.put(i + ", " + k, new int[] {minimum, raggedness.indexOf(minimum)});
+        memo.put(i + ", " + k, new int[]{minimum, raggedness.indexOf(minimum)});
 
-        return new int[] {minimum, raggedness.indexOf(minimum)};
+        return new int[]{minimum, raggedness.indexOf(minimum)};
+    }
+
+    /**
+     * Calculate raggedness values with different number of last words and
+     * return the minimum of them.
+     *
+     * @return minimum total raggedness and number of last line words
+     */
+    private static int[] minimizeTotalRaggedness() {
+        // clean memo
+        memo.clear();
+
+        // set the min value to a raggedness with 1 last word
+        int last = 1, i = 0;
+        int minimum = c(0, 0, last)[0];
+        System.out.println(words.size());
+
+        while (i < words.size()) {
+            // go as much as possible to find a minimum
+            if (w(words.size() - i - 1, words.size() - 1) > 0 && w(words.size() - i - 1, words.size() - 1) <= L) {
+                // clean memo
+                memo.clear();
+                // update minimum value
+                if (minimum > c(0, 0, i)[0]) {
+                    minimum = c(0, 0, i)[0];
+                    last = i;
+                }
+            }
+            i++;
+        }
+
+        // clean memo
+        memo.clear();
+        // call minimum once again to update memo
+        c(0, 0, last);
+
+        return new int[] {minimum, last};
     }
 
     public static void main(String[] args) {
@@ -101,7 +143,7 @@ public class RaggedyRaggedy {
             }
 
             System.out.println(Arrays.toString(words.toArray()));
-            System.out.println(Arrays.toString(c(0, 0, 1)));
+            System.out.println(Arrays.toString(minimizeTotalRaggedness()));
         }
     }
 }
