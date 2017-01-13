@@ -191,7 +191,13 @@ if __name__ == '__main__':
             words.extend(words_in_line)
             number_of_lines -= 1
 
+        if L < 3:
+            print(words[0])
+            print('===')
+            continue
+
         mtr, last_line_words = minimize_total_raggedness()
+        print(memo)
         mtr_string = backtracking()
         print(mtr_string)
         print('===')

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class RaggedyRaggedy {
+class Main {
     private static int L;
     private static ArrayList<String> words = new ArrayList<String>();
     private static Map<String, int[]> memo = new HashMap<String, int[]>();
