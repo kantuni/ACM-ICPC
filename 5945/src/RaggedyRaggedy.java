@@ -1,9 +1,10 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class RaggedyRaggedy {
     private static int L;
     private static ArrayList<String> words = new ArrayList<String>();
-    private static Map<String, ArrayList> memo = new HashMap<String, ArrayList>();
+    private static Map<String, int[]> memo = new HashMap<String, int[]>();
 
     /**
      * Define w(i,j) as the width of the line containing words i through j, inclusive,
@@ -47,9 +48,31 @@ public class RaggedyRaggedy {
      * @param last number of words used in the last line
      * @return a minimum total raggedness and an index of the minimum value (the winner)
      */
-    private static ArrayList<Integer> c(int i, int k, int last) {
+    private static int[] c(int i, int k, int last) {
         ArrayList<Integer> raggedness = new ArrayList<Integer>();
-        return raggedness;
+
+        // out of bounds
+        if (i > words.size() - 1 - last) {
+            return new int[] {0, -1};
+        }
+
+        int l = i;
+        while (w(i, l) > 0 && l <= words.size() - 1 - last) {
+            // add value to memo
+            if (!memo.containsKey((l + 1) + ", " + (k + 1))) {
+                memo.put((l + 1) + ", " + (k + 1), c(l + 1, k + 1, last));
+            }
+
+            // calculate all raggedness values
+            raggedness.add(r(i, l) + memo.get((l + 1) + ", " + (k + 1))[0]);
+            l++;
+        }
+
+        // find a total minimum raggedness
+        int minimum = Collections.min(raggedness);
+        memo.put(i + ", " + k, new int[] {minimum, raggedness.indexOf(minimum)});
+
+        return new int[] {minimum, raggedness.indexOf(minimum)};
     }
 
     public static void main(String[] args) {
@@ -78,6 +101,7 @@ public class RaggedyRaggedy {
             }
 
             System.out.println(Arrays.toString(words.toArray()));
+            System.out.println(Arrays.toString(c(0, 0, 1)));
         }
     }
 }
