@@ -97,7 +97,7 @@ def minimize_total_raggedness():
     Calculate raggedness values with different number of last words and
     return the minimum of them.
 
-    :return: {int} minimum total raggedness
+    :return: {tuple} minimum total raggedness and number of last line words
     """
     global L, words, memo
 
