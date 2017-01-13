@@ -18,5 +18,8 @@
 ### 2012 Mid-Atlantic Regional Programming Contest
 - 6192 - Problem A: Fifty Coats of Gray - **Accepted**
 
+### 2011 Mid-Atlantic Regional Programming Contest
+- 5945 - Problem B: Raggedy, Raggedy - **Time limit exceeded** (Python)
+
 ![ACM ICPC]
 (http://acmgnyr.org/icpclogo_big.png)
