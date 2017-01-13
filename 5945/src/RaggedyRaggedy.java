@@ -35,7 +35,7 @@ public class RaggedyRaggedy {
      * @return r(i, j) value
      */
     private static int r(int i, int j) {
-        return (L - w(i, j)) * (L - w(i, j));
+        return (int) Math.pow(L - w(i, j), 2);
     }
 
     /**
@@ -66,6 +66,7 @@ public class RaggedyRaggedy {
             int numberOfLines = 250;
             while (numberOfLines > 0) {
                 String[] wordsInLine = cin.nextLine().split(" ");
+
                 // terminate by an empty line
                 if (wordsInLine[0].trim().equals("")) {
                     break;
