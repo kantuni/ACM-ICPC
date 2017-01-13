@@ -105,7 +105,7 @@ def minimize_total_raggedness():
     memo = {}
     # set the min value to a raggedness with 1 last word
     last = 1
-    minimum = c(0, 0, last)
+    minimum = c(0, 0, last)[0]
 
     i = 0
     while i < len(words):
@@ -114,8 +114,8 @@ def minimize_total_raggedness():
             # clean memo
             memo = {}
             # update minimum value
-            if minimum > c(0, 0, i):
-                minimum = c(0, 0, i)
+            if minimum > c(0, 0, i)[0]:
+                minimum = c(0, 0, i)[0]
                 last = i
         i += 1
 
