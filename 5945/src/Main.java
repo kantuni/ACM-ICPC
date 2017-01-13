@@ -2,9 +2,9 @@ import java.util.*;
 
 class Main {
     private static int L;
+    private static int lastLineWords;
     private static ArrayList<String> words = new ArrayList<String>();
     private static Map<String, int[]> memo = new HashMap<String, int[]>();
-    private static int lastLineWords;
 
     /**
      * Define w(i,j) as the width of the line containing words i through j, inclusive,
@@ -113,7 +113,7 @@ class Main {
         // call minimum once again to update memo
         c(0, 0, last);
 
-        return new int[] {minimum, last};
+        return new int[]{minimum, last};
     }
 
 
@@ -131,13 +131,15 @@ class Main {
 
         while (winnerIndex > -1) {
             // add words to the appropriate line
-            for (String word : words.subList(i, i + winnerIndex + 1)) {
-                string += word + " ";
+            if (i + winnerIndex + 1 <= words.size()) {
+                for (String word : words.subList(i, i + winnerIndex + 1)) {
+                    string += word + " ";
+                }
+                // remove trailing space
+                string = string.substring(0, string.length() - 1);
+                // move to next line
+                string += "\n";
             }
-            // remove trailing space
-            string = string.substring(0, string.length() - 1);
-            // move to next line
-            string += "\n";
 
             // move to the next winner
             i += winnerIndex + 1;
@@ -164,6 +166,10 @@ class Main {
 
     public static void main(String[] args) {
         while (true) {
+            // clear data
+            words.clear();
+            memo.clear();
+
             Scanner cin = new Scanner(System.in);
             L = Integer.parseInt(cin.nextLine());
 
@@ -185,6 +191,12 @@ class Main {
                 // add words from new line
                 Collections.addAll(words, wordsInLine);
                 numberOfLines--;
+            }
+
+            if (words.size() < 2) {
+                System.out.println(words.get(0));
+                System.out.println("===");
+                continue;
             }
 
             int[] answer = minimizeTotalRaggedness();

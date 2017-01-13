@@ -191,7 +191,7 @@ if __name__ == '__main__':
             words.extend(words_in_line)
             number_of_lines -= 1
 
-        if L < 3:
+        if len(words) < 2:
             print(words[0])
             print('===')
             continue
