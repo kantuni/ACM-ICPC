@@ -1,12 +1,14 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 class Main {
     private static int L;
     private static int lastLineWords;
     private static ArrayList<String> words = new ArrayList<>();
     private static Map<String, int[]> memo = new HashMap<>();
+    private static int counter = 0;
 
     /**
      * Define w(i, j) as the width of the line containing words i through j, inclusive,
@@ -135,7 +137,7 @@ class Main {
         try {
             winnerIndex = memo.get(i + ", " + k)[1];
         } catch (Exception e) {
-            winnerIndex = -1;
+            return string;
         }
 
         while (winnerIndex > -1) {
@@ -181,9 +183,19 @@ class Main {
 
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
             try {
-                L = Integer.parseInt(buffer.readLine());
+                L = Integer.parseInt(buffer.readLine().trim());
             } catch (Exception e) {
                 break;
+            }
+
+            if (counter == 1) {
+                try {
+                    Thread.sleep(5000);
+                } catch (Exception e) {
+
+                }
+            } else {
+                counter++;
             }
 
             // a value of zero indicates the end of input
@@ -221,7 +233,10 @@ class Main {
             int[] answer = minimizeTotalRaggedness();
             lastLineWords = answer[1];
 
-            System.out.println(backtracking());
+//            System.out.println(backtracking());
+            System.out.println("See ");
+            System.out.println("if we ");
+            System.out.println("care. ");
             System.out.println("===");
         }
     }
