@@ -1,13 +1,15 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 class Main {
     private static int L;
     private static int lastLineWords;
-    private static ArrayList<String> words = new ArrayList<String>();
-    private static Map<String, int[]> memo = new HashMap<String, int[]>();
+    private static ArrayList<String> words = new ArrayList<>();
+    private static Map<String, int[]> memo = new HashMap<>();
 
     /**
-     * Define w(i,j) as the width of the line containing words i through j, inclusive,
+     * Define w(i, j) as the width of the line containing words i through j, inclusive,
      * plus one blank space between each pair of words.
      *
      * @param i starting position
@@ -18,7 +20,7 @@ class Main {
         int width = 0;
 
         // out of bounds
-        if (words.size() < j + 1) {
+        if (j + 1 > words.size()) {
             return 0;
         }
 
@@ -54,7 +56,7 @@ class Main {
      * @return a minimum total raggedness and an index of the minimum value (the winner)
      */
     private static int[] c(int i, int k, int last) {
-        ArrayList<Integer> raggedness = new ArrayList<Integer>();
+        ArrayList<Integer> raggedness = new ArrayList<>();
 
         // out of bounds
         if (i > words.size() - 1 - last) {
@@ -63,13 +65,15 @@ class Main {
 
         int l = i;
         while (w(i, l) > 0 && l <= words.size() - 1 - last) {
+            String key = (l + 1) + ", " + (k + 1);
+
             // add value to memo
-            if (!memo.containsKey((l + 1) + ", " + (k + 1))) {
-                memo.put((l + 1) + ", " + (k + 1), c(l + 1, k + 1, last));
+            if (!memo.containsKey(key)) {
+                memo.put(key, c(l + 1, k + 1, last));
             }
 
             // calculate all raggedness values
-            raggedness.add(r(i, l) + memo.get((l + 1) + ", " + (k + 1))[0]);
+            raggedness.add(r(i, l) + memo.get(key)[0]);
             l++;
         }
 
@@ -125,9 +129,14 @@ class Main {
     private static String backtracking() {
         String string = "";
 
-        // start with first word, i.e. the last winner
-        int i = 0, k = 0;
-        int winnerIndex = memo.get(i + ", " + k)[1];
+        // start with the first word, i.e. the last winner
+        int i = 0, k = 0, winnerIndex;
+
+        try {
+            winnerIndex = memo.get(i + ", " + k)[1];
+        } catch (Exception e) {
+            winnerIndex = -1;
+        }
 
         while (winnerIndex > -1) {
             // add words to the appropriate line
@@ -148,7 +157,7 @@ class Main {
         }
 
         // if there are last line words
-        if (lastLineWords > 0) {
+        if (lastLineWords > 0 && words.size() - lastLineWords >= 0) {
             for (String word : words.subList(words.size() - lastLineWords, words.size())) {
                 string += word + " ";
             }
@@ -157,7 +166,7 @@ class Main {
         }
 
         // remove empty line
-        if (string.substring(string.length() - 1, string.length()).equals("\n")) {
+        if (string.length() - 1 >= 0 && string.charAt(string.length() - 1) == '\n') {
             string = string.substring(0, string.length() - 1);
         }
 
@@ -170,8 +179,12 @@ class Main {
             words.clear();
             memo.clear();
 
-            Scanner cin = new Scanner(System.in);
-            L = Integer.parseInt(cin.nextLine());
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                L = Integer.parseInt(buffer.readLine());
+            } catch (Exception e) {
+                break;
+            }
 
             // a value of zero indicates the end of input
             if (L == 0) {
@@ -181,10 +194,16 @@ class Main {
             // maximum number of lines
             int numberOfLines = 250;
             while (numberOfLines > 0) {
-                String[] wordsInLine = cin.nextLine().split(" ");
+                String[] wordsInLine;
+
+                try {
+                    wordsInLine = buffer.readLine().split(" ");
+                } catch (Exception e) {
+                    break;
+                }
 
                 // terminate by an empty line
-                if (wordsInLine[0].trim().equals("")) {
+                if (wordsInLine[0].equals("")) {
                     break;
                 }
 
@@ -193,7 +212,7 @@ class Main {
                 numberOfLines--;
             }
 
-            if (words.size() < 2) {
+            if (words.size() == 1) {
                 System.out.println(words.get(0));
                 System.out.println("===");
                 continue;

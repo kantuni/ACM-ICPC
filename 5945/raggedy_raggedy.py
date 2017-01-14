@@ -3,7 +3,7 @@
 
 def w(i, j):
     """
-    Define w(i,j) as the width of the line containing words i through j, inclusive,
+    Define w(i, j) as the width of the line containing words i through j, inclusive,
     plus one blank space between each pair of words.
 
     :param i: {int} starting position
@@ -135,7 +135,7 @@ def backtracking():
     global memo, last_line_words
     string = ''
 
-    # start with first word, i.e. the last winner
+    # start with the first word, i.e. the last winner
     i = 0
     k = 0
     winner_index = memo['{0}, {1}'.format(i, k)][1]
@@ -196,7 +196,7 @@ if __name__ == '__main__':
             print('===')
             continue
 
-        mtr, last_line_words = minimize_total_raggedness()
+        _, last_line_words = minimize_total_raggedness()
         mtr_string = backtracking()
         print(mtr_string)
         print('===')
