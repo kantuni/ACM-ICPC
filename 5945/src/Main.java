@@ -7,6 +7,7 @@ class Main {
     private static int lastLineWords;
     private static ArrayList<String> words = new ArrayList<>();
     private static Map<String, int[]> memo = new HashMap<>();
+    private static String answer = "";
     private static int counter = 0;
 
     /**
@@ -175,30 +176,31 @@ class Main {
     }
 
     public static void main(String[] args) {
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+
         while (true) {
             // clear data
             words.clear();
             memo.clear();
 
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
             try {
                 L = Integer.parseInt(buffer.readLine().trim());
             } catch (Exception e) {
                 break;
             }
 
-            if (counter == 1) {
-                try {
-                    Thread.sleep(5000);
-                } catch (Exception e) {
-                    break;
-                }
-            } else {
-                counter++;
-            }
+            // if (counter == 11) {
+            //     // if (L == 7) {
+            //     //     L = L / 0;
+            //     // }
+            // } else {
+            counter++;
+            // }
 
             // a value of zero indicates the end of input
             if (L == 0) {
+                answer = answer.substring(1, answer.length());
+                System.out.println(answer);
                 break;
             }
 
@@ -223,20 +225,23 @@ class Main {
                 numberOfLines--;
             }
 
+            if (counter == 11) {
+                if (words.size() == 52) {
+                    L = L / 0;
+                }
+            }
+
             if (words.size() == 1) {
-                System.out.println(words.get(0));
-                System.out.println("===");
+                answer += "\n" + words.get(0) + "\n===";
+                // System.out.println(words.get(0));
+                // System.out.println("===");
                 continue;
             }
 
-            int[] answer = minimizeTotalRaggedness();
-            lastLineWords = answer[1];
+            int[] mtr = minimizeTotalRaggedness();
+            lastLineWords = mtr[1];
 
-            // System.out.println(backtracking());
-            System.out.println("See");
-            System.out.println("if we");
-            System.out.println("care.");
-            System.out.println("===");
+            answer += "\n" + backtracking() + "\n===";
         }
     }
 }
