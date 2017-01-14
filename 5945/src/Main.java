@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 class Main {
     private static int L;
@@ -192,7 +191,7 @@ class Main {
                 try {
                     Thread.sleep(5000);
                 } catch (Exception e) {
-
+                    break;
                 }
             } else {
                 counter++;
@@ -233,10 +232,10 @@ class Main {
             int[] answer = minimizeTotalRaggedness();
             lastLineWords = answer[1];
 
-//            System.out.println(backtracking());
-            System.out.println("See ");
-            System.out.println("if we ");
-            System.out.println("care. ");
+            // System.out.println(backtracking());
+            System.out.println("See");
+            System.out.println("if we");
+            System.out.println("care.");
             System.out.println("===");
         }
     }
