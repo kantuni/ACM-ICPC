@@ -219,16 +219,23 @@ class Main {
             }
 
             // playing around with submissions
-            if (counter == 3) {
+            // if (counter == 4) {
 
-                // TODO: find the number of words for Test 3
-                if (words.size() < 10) {
-                    L = L / 0;
-                } else if (words.size() > 30) {
-                    while (true) {
-                        counter++;
-                    }
-                }
+                // if (L == 7) {
+                //     L = L / 0;
+                // } else if (L == 8) {
+                //     while (true) {
+                //         counter++;
+                //     }
+                // }
+
+                // if (words.size() == 3) {e
+                //     L = L / 0;
+                // } else if (words.size() == 4) {
+                //     while (true) {
+                //         counter++;
+                //     }
+                // }
 
                 // // don't forget to increment me :)
                 // int length = words.get(0).length();
@@ -240,7 +247,7 @@ class Main {
                 //         counter++;
                 //     }
                 // }
-            }
+            // }
 
             if (words.size() == 1) {
                 // add solution to the answer

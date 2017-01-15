@@ -22,6 +22,11 @@ aa aaaa
 
 Test 3:
 6
+139 words
+
+Test 4:
+7
+4 words
 
 Test 11:
 7
