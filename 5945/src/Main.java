@@ -8,7 +8,7 @@ class Main {
     private static ArrayList<String> words = new ArrayList<>();
     private static Map<String, int[]> memo = new HashMap<>();
     private static String answer = "";
-    private static int counter = 0;
+    // private static int counter = 0;
 
     /**
      * Define w(i, j) as the width of the line containing words i through j, inclusive,
@@ -177,7 +177,6 @@ class Main {
 
     public static void main(String[] args) {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
         while (true) {
             // clear data
             words.clear();
@@ -189,17 +188,13 @@ class Main {
                 break;
             }
 
-            // if (counter == 11) {
-            //     // if (L == 7) {
-            //     //     L = L / 0;
-            //     // }
-            // } else {
-            counter++;
-            // }
+            // counter++;
 
             // a value of zero indicates the end of input
             if (L == 0) {
+                // remove first empty line from the answer
                 answer = answer.substring(1, answer.length());
+                // print answer
                 System.out.println(answer);
                 break;
             }
@@ -225,23 +220,79 @@ class Main {
                 numberOfLines--;
             }
 
-            if (counter == 11) {
-                if (words.size() == 52) {
-                    L = L / 0;
-                }
-            }
+            // if (counter == 11) {
+            //     if (words.size() == 52) {
+                    // don't forget to increment me :)
+                    // int length = words.get(5).length();
+
+                    // for (String word : words) {
+                    //     if (word.length() > 1) {
+                    //         L = L / 0;
+                    //     }
+                    // }
+
+                    // 1st check
+                    // if (length < 3) {
+                    //     // TLE = 1
+                    //     while (true) {
+                    //         counter++;
+                    //     }
+                    // } else if (length > 5) {
+                    //     // RE = 2
+                    //     L = L / 0;
+                    // } // WA = 3
+
+                    // 1.1 - 1.2
+                    // if (length == 1) {
+                    //     // TLE
+                    //     while (true) {
+                    //         counter++;
+                    //     }
+                    // } else {
+                    //     // RE
+                    //     L = L / 0;
+                    // }
+
+                    // if (length == 1) {
+                    //     L = L / 0;
+                    // }
+
+                    // // 2.1 - 2.2
+                    // if (length == 6) {
+                    //     // TLE
+                    //     while (true) {
+                    //         counter++;
+                    //     }
+                    // } else {
+                    //     // RE
+                    //     L = L / 0;
+                    // }
+
+                    // // 3.1 - 3.3
+                    // if (length == 3) {
+                    //     // TLE
+                    //     while (true) {
+                    //         counter++;
+                    //     }
+                    // } else if (length == 4) {
+                    //     // RE
+                    //     L = L / 0;
+                    // } // WA
+
+                // }
+            // }
 
             if (words.size() == 1) {
-                answer += "\n" + words.get(0) + "\n===";
-                // System.out.println(words.get(0));
-                // System.out.println("===");
+                // add solution to the answer
+                answer += "\n" + words.get(0) + "\n" + "===";
                 continue;
             }
 
             int[] mtr = minimizeTotalRaggedness();
             lastLineWords = mtr[1];
 
-            answer += "\n" + backtracking() + "\n===";
+            // add solution to the answer
+            answer += "\n" + backtracking() + "\n" + "===";
         }
     }
 }
