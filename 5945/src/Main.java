@@ -8,7 +8,7 @@ class Main {
     private static ArrayList<String> words = new ArrayList<>();
     private static Map<String, int[]> memo = new HashMap<>();
     private static String answer = "";
-    // private static int counter = 0;
+    private static int counter = 0;
 
     /**
      * Define w(i, j) as the width of the line containing words i through j, inclusive,
@@ -188,8 +188,6 @@ class Main {
                 break;
             }
 
-            // counter++;
-
             // a value of zero indicates the end of input
             if (L == 0) {
                 // remove last empty line from the answer
@@ -220,67 +218,29 @@ class Main {
                 numberOfLines--;
             }
 
-            // if (counter == 11) {
-            //     if (words.size() == 52) {
-                    // don't forget to increment me :)
-                    // int length = words.get(5).length();
+            // playing around with submissions
+            if (counter == 3) {
 
-                    // for (String word : words) {
-                    //     if (word.length() > 1) {
-                    //         L = L / 0;
-                    //     }
-                    // }
+                // TODO: find the number of words for Test 3
+                if (words.size() < 10) {
+                    L = L / 0;
+                } else if (words.size() > 30) {
+                    while (true) {
+                        counter++;
+                    }
+                }
 
-                    // 1st check
-                    // if (length < 3) {
-                    //     // TLE = 1
-                    //     while (true) {
-                    //         counter++;
-                    //     }
-                    // } else if (length > 5) {
-                    //     // RE = 2
-                    //     L = L / 0;
-                    // } // WA = 3
-
-                    // 1.1 - 1.2
-                    // if (length == 1) {
-                    //     // TLE
-                    //     while (true) {
-                    //         counter++;
-                    //     }
-                    // } else {
-                    //     // RE
-                    //     L = L / 0;
-                    // }
-
-                    // if (length == 1) {
-                    //     L = L / 0;
-                    // }
-
-                    // // 2.1 - 2.2
-                    // if (length == 6) {
-                    //     // TLE
-                    //     while (true) {
-                    //         counter++;
-                    //     }
-                    // } else {
-                    //     // RE
-                    //     L = L / 0;
-                    // }
-
-                    // // 3.1 - 3.3
-                    // if (length == 3) {
-                    //     // TLE
-                    //     while (true) {
-                    //         counter++;
-                    //     }
-                    // } else if (length == 4) {
-                    //     // RE
-                    //     L = L / 0;
-                    // } // WA
-
+                // // don't forget to increment me :)
+                // int length = words.get(0).length();
+                //
+                // if (length < ...) {
+                //     L = L / 0;
+                // } else if (length > ...) {
+                //     while (true) {
+                //         counter++;
+                //     }
                 // }
-            // }
+            }
 
             if (words.size() == 1) {
                 // add solution to the answer
@@ -293,6 +253,8 @@ class Main {
 
             // add solution to the answer
             answer += backtracking() + "\n===\n";
+
+            counter++;
         }
     }
 }
