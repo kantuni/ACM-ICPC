@@ -192,8 +192,8 @@ class Main {
 
             // a value of zero indicates the end of input
             if (L == 0) {
-                // remove first empty line from the answer
-                answer = answer.substring(1, answer.length());
+                // remove last empty line from the answer
+                answer = answer.substring(0, answer.length() - 1);
                 // print answer
                 System.out.println(answer);
                 break;
@@ -284,7 +284,7 @@ class Main {
 
             if (words.size() == 1) {
                 // add solution to the answer
-                answer += "\n" + words.get(0) + "\n" + "===";
+                answer += words.get(0) + "\n===\n";
                 continue;
             }
 
@@ -292,7 +292,7 @@ class Main {
             lastLineWords = mtr[1];
 
             // add solution to the answer
-            answer += "\n" + backtracking() + "\n" + "===";
+            answer += backtracking() + "\n===\n";
         }
     }
 }
