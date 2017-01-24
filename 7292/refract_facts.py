@@ -6,7 +6,7 @@ import math
 def find_y(start, end):
     """
     Use binary search to find a value of y, such that
-    
+
         sin(a)/sin(b) = n1/n2, where
         sin(a) = y/sqrt(y^2 + d^2)
         sin(b) = sqrt(h^2 + (x-y)^2)/(x-y)
@@ -35,12 +35,7 @@ if __name__ == '__main__':
         if params == [0, 0, 0, 0, 0]:
             break
 
-        d = params[0]
-        h = params[1]
-        x = params[2]
-        n1 = params[3]
-        n2 = params[4]
+        d, h, x, n1, n2 = params
 
-        # TODO: search for φ instead
         answer = 90 if x == 0 else round(math.degrees(math.atan(d / find_y(0, x))), 2)
         print('{:.2f}'.format(answer))
