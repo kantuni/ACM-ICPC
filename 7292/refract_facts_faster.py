@@ -9,6 +9,7 @@ def find_phi(start, end):
 
         tg(φ) = d / y
         sin(a) / sin(b) = n1 / n2, where
+
         sin(a) = y / sqrt(y^2 + d^2)
         sin(b) = (x-y) / sqrt(h^2 + (x-y)^2)
 
@@ -17,6 +18,10 @@ def find_phi(start, end):
     :return: {float} value of φ
     """
     phi = (start + end) / 2
+
+    if math.isclose(phi, 90, rel_tol=1e-04):
+        return 90
+
     y = d / math.tan(math.radians(phi))
     sin_a = y / math.sqrt(y ** 2 + d ** 2)
     sin_b = (x - y) / math.sqrt(h ** 2 + (x - y) ** 2)
@@ -39,5 +44,5 @@ if __name__ == '__main__':
 
         d, h, x, n1, n2 = params
 
-        answer = 90 if x == 0 else round(find_phi(0, 90), 2)
+        answer = round(find_phi(0, 90), 2)
         print('{:.2f}'.format(answer))
