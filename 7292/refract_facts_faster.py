@@ -19,14 +19,14 @@ def find_phi(start, end):
     """
     phi = (start + end) / 2
 
-    if math.isclose(phi, 90, rel_tol=1e-04):
+    if math.isclose(phi, 90, rel_tol=1e-05):
         return 90
 
     y = d / math.tan(math.radians(phi))
     sin_a = y / math.sqrt(y ** 2 + d ** 2)
     sin_b = (x - y) / math.sqrt(h ** 2 + (x - y) ** 2)
 
-    if math.isclose(sin_a * n2, sin_b * n1, rel_tol=1e-04):
+    if math.isclose(sin_a * n2, sin_b * n1, rel_tol=1e-05):
         return phi
 
     if sin_a * n2 < sin_b * n1:

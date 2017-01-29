@@ -5,7 +5,7 @@ import math
 
 def find_y(start, end):
     """
-    Use binary search to find a value of y, such that
+    Use binary search to find a value of y (the little piece of x), such that
 
         sin(a) / sin(b) = n1 / n2, where
         sin(a) = y / sqrt(y^2 + d^2)
