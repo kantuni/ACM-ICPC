@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
   int n, m, i, j, k, l, c, x, y;
-  vector<tuple<int, int>> obstacles;
+  vector<pair<int, int>> obstacles;
 
   while (true) {
     cin >> n >> m >> i >> j >> k >> l >> c;
@@ -14,7 +14,7 @@ int main() {
     if (n == 0) {
       // print out obstacles
       for (auto o: obstacles) {
-        cout << get<0>(o) << " " << get<1>(o) << endl;
+        cout << o.first << " " << o.second << endl;
       }
 
       break;
@@ -25,7 +25,7 @@ int main() {
 
     while (c > 0) {
       cin >> x >> y;
-      obstacles.emplace_back(x, y);
+      obstacles.push_back({x, y});
       c--;
     }
   }
