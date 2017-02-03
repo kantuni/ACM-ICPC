@@ -17,7 +17,7 @@
 # Here are we.
 #
 # C(0, 0, 0) = min(r(0, 0) + C(1, 1, 0), r(0, 1) + C(2, 1, 0), r(0, 2) + C(3, 1, 0))
-# = min(256 + 169, 144 + 289, 64 + 0) = min(425, 433, 64) = 64
+#            = min(256 + 169, 144 + 289, 64 + 0) = min(425, 433, 64) = 64
 # C(1, 1, 0) = min(r(1, 1) + C(2, 2, 0), r(1, 2) + C(3, 2, 0)) = min(289 + 289, 169 + 0) = min(578, 169) = 169
 # C(2, 2, 0) = min(r(2, 2) + C(3, 3, 0)) = min(289 + 0) = 289
 # C(2, 1, 0) = min(r(2, 2) + C(3, 1, 0)) = min(289 + 0) = 289
@@ -187,7 +187,7 @@ if __name__ == '__main__':
             # terminate by an empty line
             if not words_in_line:
                 break
-            # add words from new line
+            # add words from the new line
             words.extend(words_in_line)
             number_of_lines -= 1
 
