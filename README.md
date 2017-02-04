@@ -8,7 +8,7 @@
 - Problem H: Painting the Floodwall - **Not in the archive**
 
 ### 2015 Mid-Atlantic Regional Programming Contest
-- 7295 - Problem A: Positive Con Sequences - **Accepted**
+- [7295](https://github.com/kantuni/ACM-ICPC/tree/master/7295) - Problem A: Positive Con Sequences - **Accepted**
 - 7292 - Problem B: Refract Facts - **Accepted**
 - 7348 - Problem G: Talking About Numbers - **Accepted**
 
