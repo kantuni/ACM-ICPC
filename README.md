@@ -1,4 +1,4 @@
-# ACM-ICPC Problems Solutions
+# ACM-ICPC Live Archive Problems Solutions
 
 > Champions aren't made in the gyms. Champions are made from something they have deep inside them.
 >
