@@ -10,6 +10,7 @@ if __name__ == '__main__':
         if params == [0, 0, 0, 0, 0, 0]:
             break
 
+        # input data
         n, w, l, h, area, m = params
 
         not_painted_area = 0
