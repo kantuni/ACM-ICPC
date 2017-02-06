@@ -1,6 +1,6 @@
 # [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems Solutions
 
-> Champions aren't made in the gyms. Champions are made from something they have deep inside them.
+> "Champions aren’t made in gyms. Champions are made from something they have deep inside them – a desire, a dream, a vision."
 >
 > \- Muhammad Ali
 
