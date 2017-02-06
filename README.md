@@ -10,7 +10,7 @@
 ### 2015 Mid-Atlantic Regional Programming Contest
 - [7295](https://github.com/kantuni/ACM-ICPC/tree/master/7295) - Problem A: Positive Con Sequences - **Accepted**
 - [7292](https://github.com/kantuni/ACM-ICPC/tree/master/7292) - Problem B: Refract Facts - **Accepted**
-- 7348 - Problem G: Talking About Numbers - **Accepted**
+- [7348](https://github.com/kantuni/ACM-ICPC/tree/master/7348) - Problem G: Talking About Numbers - **Accepted**
 
 ### 2014 Mid-Atlantic Regional Programming Contest
 - 7122 - Problem H: Tight Knight - **Work in Progress**
