@@ -1,13 +1,16 @@
 #include <iostream>
-#include <regex>
+#include <cmath>
+#include <vector>
 #include <unordered_map>
+#include <regex>
+#include <stdexcept>
 
 using namespace std;
 
 int L;
 int last_line_words;
 vector<string> words;
-unordered_map<string, pair<int, int> > memo;
+unordered_map< string, pair<int, int> > memo;
 string answer;
 
 /**
@@ -22,8 +25,8 @@ int w(int i, int j) {
   int width = 0;
 
   // out of bounds
-  if (j + 1 > words.size()) {
-    return 0;
+  if (i < 0 || j >= words.size()) {
+    throw out_of_range(__func__);
   }
 
   for (int k = 0; k < words.size(); ++k) {
@@ -36,7 +39,7 @@ int w(int i, int j) {
   // remove the last blank space
   width -= 1;
 
-  return (width > 0 && width <= L) ? width : 0;
+  return width;
 }
 
 /**
@@ -48,6 +51,12 @@ int w(int i, int j) {
  * @return r(i, j) value
  */
 int r(int i, int j) {
+  if (i < 0 || j >= words.size()) {
+    throw out_of_range(__func__);
+  }
+
+  if (w(i, j) < 0
+
   return (int) pow(L - w(i, j), 2);
 }
 
@@ -84,12 +93,17 @@ pair<int, int> c(int i, int k, int last) {
   }
 
   // find a total minimum raggedness
-  auto minimum = min_element(raggedness.begin(), raggedness.end());
-  int index_of_min = (int) (minimum - raggedness.begin());
-  // BTDT: * is because min_element returns an iterator
-  memo[to_string(i) + ", " + to_string(k)] = {*minimum, index_of_min};
+  int minimum = raggedness[0], index_of_min;
+  for (int m = 1; m < raggedness.size(); ++m) {
+    if (minimum > raggedness[m]) {
+      minimum = raggedness[m];
+      index_of_min = m;
+    }
+  }
 
-  return {*minimum, index_of_min};
+  memo[to_string(i) + ", " + to_string(k)] = {minimum, index_of_min};
+
+  return {minimum, index_of_min};
 }
 
 /**
@@ -103,25 +117,36 @@ pair<int, int> minimize_total_raggedness() {
   memo.clear();
 
   // set a minimum to a raggedness with 1 last word
-  int last = 1, i = 2;
+  int i = 2, last = 1;
   int minimum = c(0, 0, last).first;
-
+  
   int words_size = (int) words.size();
-
   while (i <= words_size) {
     // go as much as possible (all possible amounts of last words) to find a minimum
     // BTDT: 0 last words = all last words
+
+    // DEBUG:
+    printf("w(%d, %d) = %d\n", words_size - i, words_size - 1, w(words_size - i, words_size - 1));
+    cout << "i: " << i << endl; 
+
     if (w(words_size - i, words_size - 1) > 0 && w(words_size - i, words_size - 1) <= L) {
       // clean memo
       memo.clear();
+
+      printf("c(%d, %d, %d) = %d\n", 0, 0, i, c(0, 0, i).first);
+      cout << minimum << " > " << c(0, 0, i).first << endl;
+      /*
 
       // update minimum value
       if (minimum > c(0, 0, i).first) {
         minimum = c(0, 0, i).first;
         last = i;
       }
+
+      */
     }
     ++i;
+    cout << endl;
   }
 
   // clean memo
@@ -140,6 +165,8 @@ pair<int, int> minimize_total_raggedness() {
 string backtracking() {
   string mtr_result = "";
 
+  cout << "good" << endl;
+
   // if all the words are on one line
   if (last_line_words == words.size()) {
     for (string word: words) {
@@ -149,6 +176,8 @@ string backtracking() {
     mtr_result = mtr_result.substr(0, mtr_result.length() - 1);
     return mtr_result;
   }
+
+  cout << "hn?" << endl;
 
   // start with the first word, i.e. the last winner
   int i = 0, k = 0, winner_index;
@@ -208,13 +237,25 @@ string backtracking() {
 }
 
 int main() {
-  L = 6;
-  words = {"See", "if", "we", "care."};
-  pair<int, int> mtr = minimize_total_raggedness();
-  last_line_words = mtr.second;
-  //answer = backtracking();
-  //cout << answer << endl << "===" << endl;
+  //L = 6;
+  L = 20;
+  words = {"Here", "are", "we."};
+  // pair<int, int> mtr = minimize_total_raggedness();
+  // last_line_words = mtr.second;
+  // answer = backtracking();
+  // cout << answer << endl << "===" << endl;
 
+  // DEBUG:
+  cout << L << endl;
+    
+  for (int i = 0; i < words.size(); ++i) {
+    cout << words[i] << " ";
+  }
+  cout << endl;
+
+  cout << w(0, 2) << endl;
+
+  // cout << mtr.first << " " << mtr.second << endl; 
 
   //while (true) {
   //  words.clear();
