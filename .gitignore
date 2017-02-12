@@ -3,11 +3,3 @@
 
 ### JetBrains ###
 .idea/
-
-## Clion ##
-CMakeLists.txt
-cmake-build-debug/
-
-## IntelliJ IDEA ##
-*.iml
-out/
