@@ -13,7 +13,7 @@
 - [7348](https://github.com/kantuni/ACM-ICPC/tree/master/7348) - Problem G: Talking About Numbers - **Accepted**
 
 ### 2014 Mid-Atlantic Regional Programming Contest
-- 7122 - Problem H: Tight Knight - **Work in Progress**
+- [7122](https://github.com/kantuni/ACM-ICPC/tree/master/7122) - Problem H: Tight Knight - **Work in Progress**
 
 ### 2013 Mid-Atlantic Regional Programming Contest
 - 6546 - Problem B: Cut the Cake - **Accepted** (C++), **Time limit exceeded** (Python)
