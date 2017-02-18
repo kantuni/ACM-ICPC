@@ -16,7 +16,7 @@
 - [7122](https://github.com/kantuni/ACM-ICPC/tree/master/7122) - Problem H: Tight Knight - **Work in Progress**
 
 ### 2013 Mid-Atlantic Regional Programming Contest
-- 6546 - Problem B: Cut the Cake - **Accepted** (C++), **Time limit exceeded** (Python)
+- [6546](https://github.com/kantuni/ACM-ICPC/tree/master/6546) - Problem B: Cut the Cake - **Accepted** (C++), **Time limit exceeded** (Python)
 
 ### 2012 Mid-Atlantic Regional Programming Contest
 - 6192 - Problem A: Fifty Coats of Gray - **Accepted**
