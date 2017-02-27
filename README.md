@@ -1,4 +1,5 @@
 # Solutions to [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems
+## Problems solved: `5`
 
 <img src="http://acmgnyr.org/icpclogo_big.png" alt="ACM ICPC" height="150">
 
