@@ -22,7 +22,7 @@
 - [6546](https://github.com/kantuni/ACM-ICPC/tree/master/6546) - Problem B: Cut the Cake - **Accepted** (C++), **Time limit exceeded** (Python)
 
 ### 2012 Mid-Atlantic Regional Programming Contest
-- 6192 - Problem A: Fifty Coats of Gray - **Accepted**
+- [6192](https://github.com/kantuni/ACM-ICPC/tree/master/6192) - Problem A: Fifty Coats of Gray - **Accepted**
 
 ### 2011 Mid-Atlantic Regional Programming Contest
 - 5945 - Problem B: Raggedy, Raggedy - **Wrong answer** (Java), **Time limit exceeded** (Python)
