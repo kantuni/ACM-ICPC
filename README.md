@@ -1,11 +1,14 @@
 # Solutions to [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems
 ## Problems solved: `5`
 
+<br>
 <img src="https://github.com/kantuni/ACM-ICPC/blob/master/ACM%20ICPC%202016%20Invitation.png" alt="ACM ICPC" height="200">
 
 > "Champions aren't made in gyms. Champions are made from something they have deep inside them - a desire, a dream, a vision. They have to have the skill, and the will. But the will must be stronger than the skill."
 >
 > \- Muhammad Ali
+
+<br>
 
 ### 2016 Mid-Atlantic Regional Programming Contest
 - Problem H: Painting the Floodwall - **Not in the archive yet**
