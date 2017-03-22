@@ -32,7 +32,7 @@ def max_total_length(murals):
     return max(value + max_total_length(no_overlap), max_total_length(murals))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = int(input())
 
     paintings = []
