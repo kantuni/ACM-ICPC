@@ -6,3 +6,7 @@
 
 ### JetBrains ###
 .idea/
+
+## IntelliJ IDEA ##
+*.iml
+out/
