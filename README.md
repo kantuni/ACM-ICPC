@@ -11,7 +11,7 @@
 <br>
 
 ### 2016 Mid-Atlantic Regional Programming Contest
-- 7952 - Painting the Floodwall
+- [7952](https://github.com/kantuni/ACM-ICPC/tree/master/7952) - Painting the Floodwall
 
 ### 2015 Mid-Atlantic Regional Programming Contest
 - [7295](https://github.com/kantuni/ACM-ICPC/tree/master/7295) - Problem A: Positive Con Sequences - **Accepted**
