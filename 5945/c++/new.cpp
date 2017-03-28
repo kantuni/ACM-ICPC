@@ -40,37 +40,8 @@ int main() {
   L = 6;
   words = {"See", "if", "we", "care."};
   
-  // cout << w(-1, 0) << endl;
-  // cout << w(0, 4) << endl;
   cout << w(0, 2) << endl;
   cout << r(0, 1) << endl;
-
-  /*
-
-  while (true) { 
-    scanf("%d", &L);
-    
-    if (L == 0) {
-      break;
-    }
-
-    int lines = 250;
-    while (lines > 0) {
-      string line;
-      getline(cin, line);
-      
-      if (line.length() == 0) {
-        break;
-      }
-
-      
-      
-      // words.push_back(word);
-      --lines;
-    }
-  }
-
-  */
 
   return 0;
 }
