@@ -1,4 +1,4 @@
-Number of tests = 12
+Number of tests: 12
 
 Test 0:
 6
