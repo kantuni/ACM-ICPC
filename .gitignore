@@ -4,6 +4,9 @@
 ### C/C++ ###
 *.out
 
+### Java ###
+*.class
+
 ### JetBrains ###
 .idea/
 
