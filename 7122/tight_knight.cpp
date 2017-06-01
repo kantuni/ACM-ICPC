@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
 int main() {
@@ -12,23 +11,20 @@ int main() {
 
     // end of input
     if (n == 0) {
-      // print out obstacles
+      // print out the obstacles
       for (auto o: obstacles) {
         cout << o.first << " " << o.second << endl;
       }
-
       break;
     }
 
     // remove old obstacles
     obstacles.clear();
 
-    while (c > 0) {
+    while (c--) {
       cin >> x >> y;
       obstacles.push_back({x, y});
-      c--;
     }
   }
-
   return 0;
 }
