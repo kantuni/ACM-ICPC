@@ -159,8 +159,7 @@ class Circle:
 
 if __name__ == '__main__':
     while True:
-        params = input().split()
-        params = [int(p) for p in params]
+        params = map(int, input().split())
 
         if params == [0, 0, 0, 0]:
             break
