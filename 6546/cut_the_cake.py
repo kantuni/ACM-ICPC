@@ -160,7 +160,6 @@ class Circle:
 if __name__ == '__main__':
     while True:
         params = map(int, input().split())
-
         if params == [0, 0, 0, 0]:
             break
 
@@ -169,9 +168,8 @@ if __name__ == '__main__':
         cx = params[1]
         cy = params[2]
         n = params[3]
-
+        
         count = 1
-
         if n == 0:
             # no cuts
             print(count)
