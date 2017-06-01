@@ -4,8 +4,7 @@ import math
 
 if __name__ == '__main__':
     while True:
-        params = input().split()
-        params = [int(x) for x in params]
+        params = map(int, input().split())
 
         if params == [0, 0, 0, 0, 0, 0]:
             break
