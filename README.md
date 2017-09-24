@@ -1,5 +1,4 @@
 # Solutions to [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems
-## Problems solved: `5`
 
 > "Champions aren't made in gyms. Champions are made from something they have deep inside them - a desire, a dream, a vision. They have to have the skill, and the will. But the will must be stronger than the skill."
 >
@@ -24,3 +23,5 @@
 
 ### 2011 Mid-Atlantic Regional Programming Contest
 - [5945](https://github.com/kantuni/ACM-ICPC/tree/master/5945) - Problem B: Raggedy, Raggedy - **Wrong answer** (Java), **Time limit exceeded** (Python)
+
+Problems solved: **5**
