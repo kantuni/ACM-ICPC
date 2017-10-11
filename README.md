@@ -1,6 +1,7 @@
 # Solutions to [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems
 
 ### 2016 Mid-Atlantic Regional Programming Contest
+- [7951](https://github.com/kantuni/ACM-ICPC/tree/master/7951) - Problem F: Islands - **Accepted**
 - [7952](https://github.com/kantuni/ACM-ICPC/tree/master/7952) - Painting the Floodwall
 
 ### 2015 Mid-Atlantic Regional Programming Contest
@@ -22,4 +23,4 @@
 
 <br>
 
-Problems solved: **5**
+Problems solved: **6**
