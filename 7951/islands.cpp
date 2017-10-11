@@ -40,12 +40,12 @@ int main() {
     
     int answer = 0;
     for (int i = 0; i < l.size(); i++) {
-      int li = l[i].first; int lj = l[i].second;
+      int li = l[i].first, lj = l[i].second;
       if (!V[li][lj]) {
         q.push(l[i]);
         V[li][lj] = true;
         while (!q.empty()) {
-          int fi = q.front().first; int fj = q.front().second;
+          int fi = q.front().first, fj = q.front().second;
           check(fi - 1, fj);
           check(fi + 1, fj);
           check(fi, fj - 1);
