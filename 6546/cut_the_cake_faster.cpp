@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-
 using namespace std;
 
 class Point {
@@ -145,7 +144,7 @@ int main() {
 
     // no lines
     if (n == 0) {
-      cout << count << endl;
+      cout << count << "\n";
       continue;
     }
 
@@ -187,6 +186,6 @@ int main() {
     }
 
     // print answer
-    cout << count << endl;
+    cout << count << "\n";
   }
 }
