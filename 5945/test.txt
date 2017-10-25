@@ -1,11 +1,7 @@
-Number of tests: 12
-
-Test 0:
 6
 See if we
 care.
 
-Test 1:
 25
 Raggedy, raggedy are we.
 Just as raggedy as raggedy can be.
@@ -13,24 +9,12 @@ We don't get nothin' for our labor.
 So raggedy, raggedy are we.
 - P Seeger
 
-Test 2:
 6
 aaa aa
 aa aaaaa
 aaaa aa
 aa aaaa
 
-Test 3:
-6
-139 words
-
-Test 4:
-7
-4 words
-
-...
-
-Test 11:
 7
 a a a a
 a a a a
@@ -45,3 +29,6 @@ a a a a
 a a a a
 a a a a
 a a a a
+
+0
+
