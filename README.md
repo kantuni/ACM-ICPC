@@ -26,4 +26,4 @@
 
 <br>
 
-Problems solved: **7**
+Problems solved: **8**
