@@ -14,7 +14,7 @@ typedef vector<vviii> vvviii;
 #define VISITED 1
 #define INF (int) 1e9
 
-int L;
+int L, last;
 vector<string> p, ans;
 vvviii AdjList;
 vvii parent;
@@ -41,6 +41,10 @@ void populate(int i, int j) {
   for (int k = j + 1; k <= p.size(); k++) {
     int w = r(j + 1, k);
     if (w != -1) {
+      // ignore last line
+      if (j >= p.size() - last + 1) {
+        w = 0;
+      }
       found = true;
       ii v = ii(j + 1, k);
       AdjList[i][j].push_back(iii(w, v));
@@ -112,6 +116,13 @@ int main() {
     dist[0][0] = 0;
     parent.assign(N, vii(N, ii(INF, INF)));
     parent[0][0] = ii(-1, -1);
+    
+    last = 0;
+    for (int i = p.size(); i > 0; i--) {
+      if (w(i, p.size()) <= L) {
+        last = p.size() - i + 1;
+      }
+    }
     
     // create DAG
     populate(0, 0);
