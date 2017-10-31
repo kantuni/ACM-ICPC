@@ -10,6 +10,7 @@ struct State {
   int dist;
   vvc board;
   vii pieces;
+  string hash;
   
   State() {}
   State(vvc board, vii pieces) {
@@ -171,8 +172,9 @@ int main() {
     
     State init(B, P);
     init.dist = 1;
+    init.hash = custom_hash(init);
     q.push(init);
-    memo.insert(custom_hash(init));
+    memo.insert(init.hash);
     
     while (!q.empty()) {
       State front = q.front();
@@ -187,9 +189,11 @@ int main() {
           State branch;
           if (can_move_left(front, i, c)) {
             branch = move_left(front, i, c);
-            string h = custom_hash(branch);
+            string h = front.hash;
+            h[2 * i + 1] = (char) ((int) h[2 * i + 1] - '0') - c + '0';
             if (memo.count(h) == 0) {
               branch.dist = front.dist + 1;
+              branch.hash = h;
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
@@ -201,10 +205,12 @@ int main() {
           }
           
           if (can_move_right(front, i, c)) {
-            State branch = move_right(front, i, c);
-            string h = custom_hash(branch);
+            branch = move_right(front, i, c);
+            string h = front.hash;
+            h[2 * i + 1] = (char) ((int) h[2 * i + 1] - '0') + c + '0';
             if (memo.count(h) == 0) {
               branch.dist = front.dist + 1;
+              branch.hash = h;
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
@@ -216,10 +222,12 @@ int main() {
           }
           
           if (can_move_up(front, i, c)) {
-            State branch = move_up(front, i, c);
-            string h = custom_hash(branch);
+            branch = move_up(front, i, c);
+            string h = front.hash;
+            h[2 * i] = (char) ((int) h[2 * i] - '0') - c + '0';
             if (memo.count(h) == 0) {
               branch.dist = front.dist + 1;
+              branch.hash = h;
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
@@ -231,10 +239,12 @@ int main() {
           }
           
           if (can_move_down(front, i, c)) {
-            State branch = move_down(front, i, c);
-            string h = custom_hash(branch);
+            branch = move_down(front, i, c);
+            string h = front.hash;
+            h[2 * i] = (char) ((int) h[2 * i] - '0') + c + '0';
             if (memo.count(h) == 0) {
               branch.dist = front.dist + 1;
+              branch.hash = h;
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
