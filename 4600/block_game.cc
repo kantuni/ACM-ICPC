@@ -176,9 +176,12 @@ int main() {
     
     while (!q.empty()) {
       State front = q.front();
-      if (can_exit(front))
+      if (can_exit(front)) {
+        printf("%d\n", front.dist);
         break;
+      }
       
+      bool found = false;
       for (int i = 0; i < front.pieces.size(); i++) {
         for (int c = 1; c < 6; c++) {
           State branch;
@@ -189,6 +192,11 @@ int main() {
               branch.dist = front.dist + 1;
               q.push(branch);
               memo.insert(h);
+              if (can_exit(branch)) {
+                found = true;
+                printf("%d\n", branch.dist);
+                break;
+              }
             }
           }
           
@@ -199,6 +207,11 @@ int main() {
               branch.dist = front.dist + 1;
               q.push(branch);
               memo.insert(h);
+              if (can_exit(branch)) {
+                found = true;
+                printf("%d\n", branch.dist);
+                break;
+              }
             }
           }
           
@@ -209,6 +222,11 @@ int main() {
               branch.dist = front.dist + 1;
               q.push(branch);
               memo.insert(h);
+              if (can_exit(branch)) {
+                found = true;
+                printf("%d\n", branch.dist);
+                break;
+              }
             }
           }
           
@@ -219,18 +237,31 @@ int main() {
               branch.dist = front.dist + 1;
               q.push(branch);
               memo.insert(h);
+              if (can_exit(branch)) {
+                found = true;
+                printf("%d\n", branch.dist);
+                break;
+              }
             }
           }
         }
+        
+        // break for
+        if (found) {
+          break;
+        }
+      }
+      
+      // break while
+      if (found) {
+        break;
       }
       
       // leave this here
       q.pop();
     }
     
-    if (!q.empty()) {
-      printf("%d\n", q.front().dist);
-    } else {
+    if (q.empty()) {
       printf("-1\n");
     }
   }
