@@ -146,6 +146,7 @@ int main() {
       }
     }
     
+    // piece recognition
     for (int i = 0; i < 6; i++) {
       for (int j = 0; j < 6; j++) {
         if (B[i][j] != '.') {
@@ -154,9 +155,11 @@ int main() {
             P[0] = ii(i, j);
             continue;
           }
-          bool h2 = j - 1 >= 0 && j + 1 < 6 && B[i][j - 1] != B[i][j] && B[i][j] == B[i][j + 1];
+          bool h2 = j + 1 < 6 && B[i][j] == B[i][j + 1] && j - 1 >= 0 && B[i][j - 1] != B[i][j];
+          h2 = h2 || (j + 1 < 6 && B[i][j] == B[i][j + 1] && j - 1 < 0);
           bool h3 = j + 2 < 6 && B[i][j] == B[i][j + 2];
-          bool v2 = i - 1 >= 0 && i + 1 < 6 && B[i - 1][j] != B[i][j] && B[i][j] == B[i + 1][j];
+          bool v2 = i + 1 < 6 && B[i][j] == B[i + 1][j] && i - 1 >= 0 && B[i - 1][j] != B[i][j];
+          v2 = v2 || (i + 1 < 6 && B[i][j] == B[i + 1][j] && i - 1 < 0);
           bool v3 = i + 2 < 6 && B[i][j] == B[i + 2][j];
           if (h2 || h3 || v2 || v3) P.push_back(ii(i, j));
         }
