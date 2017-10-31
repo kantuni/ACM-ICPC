@@ -1,6 +1,6 @@
 # Solutions to [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu) Problems
 
-## Mid-Atlantic Regional
+## USA Mid-Atlantic Regional
 | Year | Problem                                  | Verdict                                  |
 | ---- | ---------------------------------------- | ---------------------------------------- |
 | 2016 | [7951](https://github.com/kantuni/ACM-ICPC/tree/master/7951) - Problem F: Islands | Accepted                                 |
