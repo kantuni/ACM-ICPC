@@ -19,10 +19,10 @@ struct State {
   }
 };
 
-string custom_hash(State &s) {
+string custom_hash(vii p) {
   string h;
-  for (int i = 0; i < s.pieces.size(); i++)
-    h += to_string(s.pieces[i].first) + to_string(s.pieces[i].second);
+  for (int i = 0; i < p.size(); i++)
+    h += to_string(p[i].first) + to_string(p[i].second);
   return h;
 }
 
@@ -167,24 +167,54 @@ int main() {
       }
     }
     
+    // find a wall
+    for (int i = 0; i < 6; i++) {
+      bool ok = true;
+      for (int j = 1; j < 5; j++) {
+        bool occupied = B[j][i] != '.';
+        bool vertical = B[j][i] == B[j - 1][i] || B[j][i] == B[j + 1][i];
+        if (!occupied || !vertical) {
+          ok = false;
+          break;
+        }
+      }
+      
+      if (!ok) continue;
+      for (int k = P.size() - 1; k >= 0; k--) {
+        if (P[k].second <= i) {
+          P.erase(P.begin() + k);
+        }
+      }
+    }
+    
+    if (P.size() == 0) {
+      printf("-1\n");
+      continue;
+    }
+    
     unordered_set<string> memo;
     queue<State> q;
     
     State init(B, P);
     init.dist = 1;
-    init.hash = custom_hash(init);
+    init.hash = custom_hash(P);
     q.push(init);
     memo.insert(init.hash);
     
+    if (can_exit(init)) {
+      printf("1\n");
+      continue;
+    }
+    
     while (!q.empty()) {
       State front = q.front();
-      if (can_exit(front)) {
-        printf("%d\n", front.dist);
-        break;
-      }
-      
       bool found = false;
+      
       for (int i = 0; i < front.pieces.size(); i++) {
+        if (found) {
+          break;
+        }
+        
         for (int c = 1; c < 6; c++) {
           State branch;
           if (can_move_left(front, i, c)) {
@@ -197,8 +227,8 @@ int main() {
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
-                found = true;
                 printf("%d\n", branch.dist);
+                found = true;
                 break;
               }
             }
@@ -214,8 +244,8 @@ int main() {
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
-                found = true;
                 printf("%d\n", branch.dist);
+                found = true;
                 break;
               }
             }
@@ -231,8 +261,8 @@ int main() {
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
-                found = true;
                 printf("%d\n", branch.dist);
+                found = true;
                 break;
               }
             }
@@ -248,21 +278,15 @@ int main() {
               q.push(branch);
               memo.insert(h);
               if (can_exit(branch)) {
-                found = true;
                 printf("%d\n", branch.dist);
+                found = true;
                 break;
               }
             }
           }
         }
-        
-        // break for
-        if (found) {
-          break;
-        }
       }
       
-      // break while
       if (found) {
         break;
       }
