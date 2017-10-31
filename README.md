@@ -9,9 +9,10 @@
 | 2015 | [7292](https://github.com/kantuni/ACM-ICPC/tree/master/7292) - Problem B: Refract Facts | Accepted                                 |
 | 2015 | [7348](https://github.com/kantuni/ACM-ICPC/tree/master/7348) - Problem G: Talking About Numbers | Accepted                                 |
 | 2014 | [7122](https://github.com/kantuni/ACM-ICPC/tree/master/7122) - Problem H: Tight Knight |                                          |
+| 2013 | [6545](https://github.com/kantuni/ACM-ICPC/tree/master/6545) - Problem A: Text Roll | Accepted                                 |
 | 2013 | [6546](https://github.com/kantuni/ACM-ICPC/tree/master/6546) - Problem B: Cut the Cake | Accepted (C++), <br />Time limit exceeded (Python) |
 | 2012 | [6192](https://github.com/kantuni/ACM-ICPC/tree/master/6192) - Problem A: Fifty Coats of Gray | Accepted                                 |
 | 2011 | [5945](https://github.com/kantuni/ACM-ICPC/tree/master/5945) - Problem B: Raggedy, Raggedy | Accepted (C++), <br />Time limit exceeded (Python) |
 | 2010 | [4868](https://github.com/kantuni/ACM-ICPC/tree/master/4868) - Problem A: Palindrometer | Accepted                                 |
 
-Problems solved: **8**
+Problems solved: **9**
