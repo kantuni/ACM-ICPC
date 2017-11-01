@@ -14,6 +14,7 @@
 | 2012 | [6192](https://github.com/kantuni/ACM-ICPC/tree/master/6192) | Fifty Coats of Gray    | Accepted                                 |
 | 2011 | [5945](https://github.com/kantuni/ACM-ICPC/tree/master/5945) | Raggedy, Raggedy       | Accepted (C++), <br />Time limit exceeded (Python) |
 | 2010 | [4868](https://github.com/kantuni/ACM-ICPC/tree/master/4868) | Palindrometer          | Accepted                                 |
+| 2010 | [4872](https://github.com/kantuni/ACM-ICPC/tree/master/4872) | Underground Cables     | Accepted                                 |
 | 2009 | [4600](https://github.com/kantuni/ACM-ICPC/tree/master/4600) | Block Game             | Time limit exceeded                      |
 
-Problems solved: **9**
+Problems solved: **10**
