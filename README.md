@@ -3,6 +3,7 @@
 ## USA Mid-Atlantic Regional
 | Year | #                                        | Title                  | Verdict                                  |
 | ---- | ---------------------------------------- | ---------------------- | ---------------------------------------- |
+| 2016 | [7948](https://github.com/kantuni/ACM-ICPC/tree/master/7948) | Periodic Strings       | Accepted                                 |
 | 2016 | [7951](https://github.com/kantuni/ACM-ICPC/tree/master/7951) | Islands                | Accepted                                 |
 | 2016 | [7952](https://github.com/kantuni/ACM-ICPC/tree/master/7952) | Painting the Floodwall |                                          |
 | 2015 | [7295](https://github.com/kantuni/ACM-ICPC/tree/master/7295) | Positive Con Sequences | Accepted                                 |
@@ -17,4 +18,4 @@
 | 2010 | [4872](https://github.com/kantuni/ACM-ICPC/tree/master/4872) | Underground Cables     | Accepted                                 |
 | 2009 | [4600](https://github.com/kantuni/ACM-ICPC/tree/master/4600) | Block Game             | Time limit exceeded                      |
 
-Problems solved: **10**
+Problems solved: **11**
