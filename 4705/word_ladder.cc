@@ -37,12 +37,15 @@ int main() {
     if (n == 0)
       break;
     
-    vector<string> words;
+    set<string> s;
     for (int i = 0; i < n; i++) {
       string w;
       cin >> w;
-      words.push_back(w);
+      s.insert(w);
     }
+    
+    vector<string> words(s.begin(), s.end());
+    n = words.size();
     
     vvi D(n, vi(n, INF));
     for (int i = 0; i < n; i++) {
