@@ -1,0 +1,15 @@
+4 
+cat 
+cot 
+scat 
+sat 
+7 
+welcome 
+to 
+the 
+acm 
+regional 
+programming 
+contest 
+0
+
