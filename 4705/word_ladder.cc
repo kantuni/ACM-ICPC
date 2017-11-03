@@ -3,7 +3,7 @@ using namespace std;
 
 typedef vector<int> vi;
 typedef vector<vi> vvi;
-#define INF (int) 1e9
+#define INF (int) 1e7
 
 bool transform(string a, string b) {
   if (a.size() < b.size())
