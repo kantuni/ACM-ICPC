@@ -1,0 +1,13 @@
+*ed => 1
+
+The quick brown foxes jumped over
+the lazy yellow dogs.
+
+*ed => 1
+*ies => 1y
+*s => 1
+
+The quick brown foxes jumped over
+the lazy yellow dogs.
+***   
+
