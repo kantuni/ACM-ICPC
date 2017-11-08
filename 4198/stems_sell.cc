@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef unsigned long long ull;
 typedef vector<string> vs;
 
 vs ps, rs, ms;
@@ -11,51 +10,44 @@ bool isvowel(char c) {
   return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
 }
 
-bool isword(string w) {
-  for (ull i = 0; i < w.size(); i++) {
-    bool lower = w[i] >= 'a' && w[i] <= 'z';
-    bool upper = w[i] >= 'A' && w[i] <= 'Z';
-    if (!lower && !upper) return false;
-  }
-  return true;
-}
-
-// without *
+// without the first *
 bool _match(string s, string p) {
-  bool ok = true;
-  for (ull i = 0; i < p.size(); i++) {
-    // digit
-    if (p[i] >= '1' && p[i] <= '9') {
-      int index = p[i] - '0';
-      p[i] = p[index - 1];
+  vs tms;
+  for (int i = 0, j = 0; i < p.size(); i++, j++) {
+    char pi = p[i], sj = s[j];
+    
+    // match the first *
+    if (pi == '*') {
+      string star = ms[ms.size() - 1];
+      if (s.substr(j, star.size()) != star)
+        return false;
+      tms.push_back(star);
+      j += star.size() - 1;
     }
-    // given letter
-    if (p[i] >= 'a' && p[i] <= 'z') {
-      if (p[i] != tolower(s[i])) {
-        ok = false;
-        break;
-      }
+    
+    // given letter in l/u case
+    else if (islower(pi)) {
+      if (pi != tolower(sj))
+        return false;
+      tms.push_back(string(1, sj));
     }
-    // vowel
-    else if (p[i] == 'V') {
-      if (!isvowel(s[i])) {
-        ok = false;
-        break;
-      }
+    
+    // lower-case vowel
+    else if (pi == 'V') {
+      if (!islower(sj) || !isvowel(sj))
+        return false;
+      tms.push_back(string(1, s[j]));
     }
-    // consonant
-    else if (p[i] == 'C') {
-      if (isvowel(s[i])) {
-        ok = false;
-        break;
-      }
+    
+    // lower-case consonant
+    else if (pi == 'C') {
+      if (!islower(sj) || isvowel(sj))
+        return false;
+      tms.push_back(string(1, sj));
     }
   }
   
-  if (!ok) return false;
-  for (auto c: s) {
-    ms.push_back(string(1, c));
-  }
+  ms.insert(ms.end(), tms.begin(), tms.end());
   return true;
 }
 
@@ -66,13 +58,20 @@ bool match(string s, string p) {
     return true;
   }
   
+  // replace digits here
+  for (int i = 0; i < p.size(); i++) {
+    if (p[i] >= '1' && p[i] <= '9') {
+      int index = p[i] - '0';
+      p[i] = p[index - 1];
+    }
+  }
+  
   if (p[0] == '*') {
     // try to match subsets
-    for (ull i = 1; s.size() - i >= p.size() - 1; i++) {
+    for (int i = 1; s.size() - i >= p.size() - 1; i++) {
       ms.push_back(s.substr(0, i));
-      if (_match(s.substr(i), p.substr(1))) {
+      if (_match(s.substr(i), p.substr(1)))
         return true;
-      }
       ms.pop_back();
     }
   }
@@ -81,11 +80,11 @@ bool match(string s, string p) {
 
 string replace(string r) {
   string w = "";
-  for (ull i = 0; i < r.size(); i++) {
-    if (r[i] >= 'a' && r[i] <= 'z') {
-      w += r[i];
+  for (char c: r) {
+    if (islower(c)) {
+      w += c;
     } else {
-      int index = r[i] - '0';
+      int index = c - '0';
       w += ms[index - 1];
     }
   }
@@ -93,31 +92,40 @@ string replace(string r) {
 }
 
 void solve() {
-  for (auto &line: text) {
-    istringstream iss(line);
-    string word;
-    vs words;
-    
-    while (iss >> word) {
-      words.push_back(word);
-    }
-    
-    for (ull i = 0; i < words.size(); i++) {
-      if (!isword(words[i])) continue;
+  for (auto line: text) {
+    int start = -1;
+    for (int i = 0; i < line.size(); i++) {
+      if (isalpha(line[i])) {
+        if (start == -1) start = i;
+        if (i != line.size() - 1)
+          continue;
+      }
       
-      for (ull j = 0; j < ps.size(); j++) {
-        if (match(words[i], ps[j])) {
-          words[i] = replace(rs[j]);
+      if (start == -1)
+        continue;
+      
+      // find words
+      string w;
+      if (i == line.size() - 1 && isalpha(line[i])) {
+        w = line.substr(start, line.size() - start);
+      } else {
+        w = line.substr(start, i - start);
+      }
+      
+      // match and replace
+      for (int j = 0; j < ps.size(); j++) {
+        if (match(w, ps[j])) {
+          string r = replace(rs[j]);
+          line.replace(start, w.size(), r);
+          i += r.size() - w.size();
+          ms.clear();
+          break;
         }
         ms.clear();
       }
+      start = -1;
     }
-    
-    for (ull i = 0; i < words.size(); i++) {
-      cout << words[i];
-      if (i != words.size() - 1) cout << " ";
-    }
-    cout << "\n";
+    cout << line << "\n";
   }
 }
 
@@ -138,16 +146,17 @@ int main() {
         string tline;
         getline(cin, tline);
         
-        if (tline[0] == '*' && tline[1] == '*' && tline[2] == '*') {
+        if (tline.substr(0, 3) == "***") {
           exit = true;
         }
         
-        if (tline == "" || (tline[0] == '*' && tline[1] == '*' && tline[2] == '*')) {
+        if (tline == "" || tline.substr(0, 3) == "***") {
           solve();
           cout << "***\n";
           
           ps.clear();
           rs.clear();
+          ms.clear();
           text.clear();
           break;
         }

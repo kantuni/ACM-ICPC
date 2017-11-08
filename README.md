@@ -17,6 +17,7 @@
 | 2010 | [4868](https://github.com/kantuni/ACM-ICPC/tree/master/4868) | Palindrometer          | Accepted                                 |
 | 2010 | [4872](https://github.com/kantuni/ACM-ICPC/tree/master/4872) | Underground Cables     | Accepted                                 |
 | 2009 | [4600](https://github.com/kantuni/ACM-ICPC/tree/master/4600) | Block Game             | Time limit exceeded                      |
-| 2009 | [4705](https://github.com/kantuni/ACM-ICPC/tree/master/4705) | Word Ladder            | Accepted                            |
+| 2009 | [4705](https://github.com/kantuni/ACM-ICPC/tree/master/4705) | Word Ladder            | Accepted                                 |
+| 2008 | [4198](https://github.com/kantuni/ACM-ICPC/tree/master/4198) | Stems Sell             | Wrong answer                             |
 
 Problems solved: **12**

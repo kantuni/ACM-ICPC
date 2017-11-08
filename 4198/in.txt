@@ -8,6 +8,6 @@ the lazy yellow dogs.
 *s => 1
 
 The quick brown foxes jumped over
-the lazy yellow dogs.
-***   
+  the lazy yellow dogs.   
+***
 
