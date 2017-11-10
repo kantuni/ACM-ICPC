@@ -15,7 +15,7 @@ bool isv(char c) {
 }
 
 bool isc(char c) {
-  return c == ' ' || !isv(c);
+  return c == ' ' || (tolower(c) >= 'a' && tolower(c) <= 'z' && !isv(c));
 }
 
 int main() {
