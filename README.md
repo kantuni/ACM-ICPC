@@ -9,6 +9,7 @@
 | 2015 | [7295](https://github.com/kantuni/ACM-ICPC/tree/master/7295) | Positive Con Sequences | Accepted                                 |
 | 2015 | [7292](https://github.com/kantuni/ACM-ICPC/tree/master/7292) | Refract Facts          | Accepted                                 |
 | 2015 | [7348](https://github.com/kantuni/ACM-ICPC/tree/master/7348) | Talking About Numbers  | Accepted                                 |
+| 2014 | [7117](https://github.com/kantuni/ACM-ICPC/tree/master/7117) | Hy-phe-na-tion Rulez   | Wrong answer                             |
 | 2014 | [7122](https://github.com/kantuni/ACM-ICPC/tree/master/7122) | Tight Knight           |                                          |
 | 2013 | [6545](https://github.com/kantuni/ACM-ICPC/tree/master/6545) | Text Roll              | Accepted                                 |
 | 2013 | [6546](https://github.com/kantuni/ACM-ICPC/tree/master/6546) | Cut the Cake           | Accepted (C++), <br />Time limit exceeded (Python) |
