@@ -1,0 +1,7 @@
+Word processors often split a word across lines using hyphenation,
+a technique requiring some knowledge of where the syllables in
+the word are divided.
+
+The rules given in this problem are a bit crude. But they represent a
+good starting point.
+===
