@@ -1,17 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef vector<char> vc;
 typedef vector<string> vs;
 #define all(c) (c).begin(), (c).end()
 
-vector<string> NA = {
+vs NA = {
   "qu", "tr", "br", "str", "st", 
   "sl", "bl", "cr", "ph", "ch"
 };
 
 bool isv(char c) {
-  vector<char> vs = {'a', 'e', 'i', 'o', 'u', 'y'};
-  return find(all(vs), tolower(c)) != vs.end();
+  vc vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
+  return find(all(vowels), tolower(c)) != vowels.end();
 }
 
 bool isc(char c) {
@@ -21,41 +22,33 @@ bool isc(char c) {
 int main() {
   unordered_map<int, vs> memo;
   vs words;
+  string w;
   
-  while (true) {
-    string line;
-    getline(cin, line);
-    
-    if (line == "===")
+  while (cin >> w) {
+    if (w == "===")
       break;
-    
-    string w;
-    istringstream iss(line);
-    while (iss >> w) {
-      words.push_back(w);
-      memo[words.size() - 1] = {};
-    }
+      
+    words.push_back(w);
+    memo[words.size() - 1] = {};
   }
   
   // replace NA characters with spaces
   for (int i = 0; i < words.size(); i++) {
     string &w = words[i];
     
-    // `str` (order matters)
-    for (int j = 0; j < (int) w.size() - 2; j++) {
-      string ccc = string(1, w[j]) + string(1, w[j + 1]) + string(1, w[j + 2]);
-      string lccc = ccc;
-      transform(all(lccc), lccc.begin(), ::tolower);
-      
-      if (lccc == "str") {
-        memo[i].push_back(ccc);
-        w[j] = ' ';
-        w = w.substr(0, j + 1) + w.substr(j + 3);
-      }
-    }
-    
-    // the rest
     for (int j = 0; j < (int) w.size() - 1; j++) {
+      if (j + 2 < w.size()) {
+        string ccc = string(1, w[j]) + string(1, w[j + 1]) + string(1, w[j + 2]);
+        string lccc = ccc;
+        transform(all(lccc), lccc.begin(), ::tolower);
+        
+        if (lccc == "str") {
+          memo[i].push_back(ccc);
+          w[j] = ' ';
+          w = w.substr(0, j + 1) + w.substr(j + 3);
+        }
+      }
+      
       string cc = string(1, w[j]) + string(1, w[j + 1]);
       string lcc = cc;
       transform(all(lcc), lcc.begin(), ::tolower);
@@ -109,7 +102,7 @@ int main() {
     }
   }
   
-  for (auto &w: words)
+  for (auto w: words)
     cout << w << "\n";
   
   return 0;
