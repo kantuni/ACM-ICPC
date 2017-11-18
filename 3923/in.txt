@@ -1,0 +1,13 @@
+Aqua Beta 2
+Beta Calcum 1
+Aqua Delta 10
+Ente Franca 10
+0 0 0
+Aqua 50
+Calcum 10
+Beta 25
+Delta 10
+Franca 10
+0 0
+ENDOFINPUT
+

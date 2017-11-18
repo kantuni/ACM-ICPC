@@ -1,0 +1,20 @@
+3
+10 5
+-170 Win
+-160 Win
+125 Win
+-135 Win
+-140 Win
+15 8
+100 Win
+-100 Tie
+-250 Win
+135 Tie
+265 Tie
+1500 Win
+120 Win
+130 Win
+10 2
+100 Loss
+300 Tie
+
