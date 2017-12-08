@@ -7,8 +7,9 @@ int main() {
     cin >> n;
     cin.ignore();
     
-    if (n == 0)
+    if (n == 0) {
       break;
+    }
     
     vector<string> lines;
     for (int i = 0; i < n; i++) {
@@ -27,7 +28,10 @@ int main() {
           break;
         }
       }
-      if (!found) start = max(start, (int) lines[i].size());
+      
+      if (!found) {
+        start = max(start, (int) lines[i].size());
+      }
     }
     
     // answer
