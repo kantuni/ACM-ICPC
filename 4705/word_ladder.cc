@@ -6,24 +6,30 @@ typedef vector<vi> vvi;
 #define INF (int) 1e7
 
 bool transform(string a, string b) {
-  if (a.size() < b.size())
+  if (a.size() < b.size()) {
     return transform(b, a);
+  }
   
   int m = a.size(), n = b.size();
-  if (m - n >= 2)
+  if (m - n >= 2) {
     return false;
+  }
   
   int miss = 0;
   if (m == n) {
-    for (int i = 0; i < m; i++)
-      if (a[i] != b[i])
+    for (int i = 0; i < m; i++) {
+      if (a[i] != b[i]) {
         miss++;
+      }
+    }
   } else {
     int j = 0;
     for (int i = 0; i < m && j < n; i++) {
-      if (a[i] != b[j])
+      if (a[i] != b[j]) {
         miss++;
-      else j++;
+      } else {
+        j++;
+      }
     }
   }
   return miss <= 1;
@@ -34,8 +40,9 @@ int main() {
     int n;
     cin >> n;
     
-    if (n == 0)
+    if (n == 0) {
       break;
+    }
     
     set<string> s;
     for (int i = 0; i < n; i++) {
@@ -71,11 +78,13 @@ int main() {
     }
     
     int diameter = 0;
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < n; j++)
-        if (D[i][j] != INF)
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (D[i][j] != INF) {
           diameter = max(diameter, D[i][j]);
-    
+        }
+      }
+    }
     cout << diameter + 1 << "\n";
   }
   
