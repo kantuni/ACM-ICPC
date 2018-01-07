@@ -135,7 +135,6 @@ int main() {
     long long r, x, y, n;
     cin >> r >> x >> y >> n;
 
-    // end of input
     if (r == 0 && x == 0 && y == 0 && n == 0) {
       return 0;
     }
@@ -177,7 +176,7 @@ int main() {
           }
         }
 
-        // count = # of intersections inside the circle + 1
+        // number of intersections inside the circle + 1
         count++;
 
         // keep the processed lines that intersected the circle
@@ -185,7 +184,6 @@ int main() {
       }
     }
 
-    // print answer
     cout << count << "\n";
   }
 }
