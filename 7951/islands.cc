@@ -1,6 +1,4 @@
-#include <iostream>
-#include <queue>
-#include <utility>
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef vector<char> vc;
