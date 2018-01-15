@@ -4,7 +4,6 @@ using namespace std;
 int main() {
   string s;
   while (getline(cin, s)) {
-    // empty line
     if (s.size() == 0) {
       continue;
     }
@@ -16,8 +15,9 @@ int main() {
     }
     
     set<char> sc;
-    for (char c: s)
+    for (char c: s) {
       sc.insert(c);
+    }
       
     // aaa
     if (sc.size() == 1) {
