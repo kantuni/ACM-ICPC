@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#define all(c) (c).begin(), (c).end()
 using namespace std;
 
+#define all(c) (c).begin(), (c).end()
 typedef vector<char> vc;
 typedef vector<string> vs;
 
