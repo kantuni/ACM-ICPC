@@ -17,7 +17,6 @@ int dc[] = {-2, -2, -1, -1, 1, 1, 2, 2};
 vvvii AdjList;
 vvi color;
 
-
 void print() {
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
