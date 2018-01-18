@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define UNVISITED -1
+#define VISITED 1
+#define OBSTACLE 2
 typedef pair<int, int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
 typedef vector<vi> vvi;
 typedef vector<vii> vvii;
 typedef vector<vvii> vvvii;
-#define UNVISITED -1
-#define VISITED 1
-#define OBSTACLE 2
 
 int n, m, si, sj, ei, ej, c;
 int dr[] = {-1, 1, -2, 2, -2, 2, -1, 1};
