@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
+#define all(c) (c).begin(), (c).end()
 using namespace std;
 
 typedef vector<char> vc;
 typedef vector<string> vs;
-#define all(c) (c).begin(), (c).end()
 
 vs NA = {
   "qu", "tr", "br", "str", "st", 
@@ -25,8 +25,9 @@ int main() {
   string w;
   
   while (cin >> w) {
-    if (w == "===")
+    if (w == "===") {
       break;
+    }
       
     words.push_back(w);
     memo[words.size() - 1] = {};
@@ -72,8 +73,9 @@ int main() {
           string cc = string(1, w[i + 1]) + string(1, w[i + 2]);
           string lcc = cc;
           transform(all(lcc), lcc.begin(), ::tolower);
-          if (find(all(NA), lcc) == NA.end())
+          if (find(all(NA), lcc) == NA.end()) {
             w.insert(i + 2, "-");
+          }
         }
       }
     }
@@ -102,8 +104,9 @@ int main() {
     }
   }
   
-  for (auto w: words)
+  for (auto w: words) {
     cout << w << "\n";
+  }
   
   return 0;
 }
