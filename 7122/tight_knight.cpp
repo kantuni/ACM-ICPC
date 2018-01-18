@@ -36,11 +36,8 @@ void populate(int i, int j) {
   for (int k = 0; k < 8; k++) {
     int r = i + dr[k], c = j + dc[k];
     if (r >= 0 && r < n && c >= 0 && c < m) {
-      if (color[r][c] != OBSTACLE)
-        AdjList[i][j].push_back(ii(r, c));
-
-      if (color[r][c] == UNVISITED)
-        populate(r, c);
+      if (color[r][c] != OBSTACLE) AdjList[i][j].push_back(ii(r, c));
+      if (color[r][c] == UNVISITED) populate(r, c);
     }
   }
 }
