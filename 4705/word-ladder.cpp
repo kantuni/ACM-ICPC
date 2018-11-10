@@ -9,12 +9,10 @@ bool transform(string a, string b) {
   if (a.size() < b.size()) {
     return transform(b, a);
   }
-  
   int m = a.size(), n = b.size();
   if (m - n >= 2) {
     return false;
   }
-  
   int miss = 0;
   if (m == n) {
     for (int i = 0; i < m; i++) {
