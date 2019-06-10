@@ -10,7 +10,7 @@ int main() {
     
     // a
     if (s.size() == 1) {
-      cout << 1 << "\n";
+      cout << 1 << endl;
       continue;
     }
     
@@ -21,12 +21,12 @@ int main() {
       
     // aaa
     if (sc.size() == 1) {
-      cout << 1 << "\n";
+      cout << 1 << endl;
       continue;
     }
     
     if (sc.size() == s.size()) {
-      cout << s.size() << "\n";
+      cout << s.size() << endl;
       continue;
     }
     
@@ -56,7 +56,7 @@ int main() {
         }
         
         if (periodic) {
-          cout << k << "\n";
+          cout << k << endl;
           break;
         }
       }
