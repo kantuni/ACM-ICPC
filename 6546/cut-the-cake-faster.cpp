@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Point {
@@ -135,15 +133,15 @@ int main() {
     long long r, x, y, n;
     cin >> r >> x >> y >> n;
 
-    if (r == 0 && x == 0 && y == 0 && n == 0) {
+    if (r == 0 and x == 0 and y == 0 and n == 0) {
       return 0;
     }
 
-    long long count = 1;
+    long long ans = 1;
 
     // no lines
     if (n == 0) {
-      cout << count << "\n";
+      cout << ans << endl;
       continue;
     }
 
@@ -171,19 +169,19 @@ int main() {
           if (!isnan(lip.x) && !isnan(lip.y)) {
             // check if intersection point is inside the circle
             if (c.point_in_circle(lip)) {
-              count++;
+              ans++;
             }
           }
         }
 
         // number of intersections inside the circle + 1
-        count++;
+        ans++;
 
         // keep the processed lines that intersected the circle
         processed_lines.push_back(l);
       }
     }
 
-    cout << count << "\n";
+    cout << ans << endl;
   }
 }
