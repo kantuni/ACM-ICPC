@@ -83,7 +83,7 @@ int main() {
         }
       }
     }
-    cout << diameter + 1 << "\n";
+    cout << diameter + 1 << endl;
   }
   
   return 0;
