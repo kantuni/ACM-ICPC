@@ -26,7 +26,6 @@ int main() {
   while (cin >> n >> m) {
     G.resize(n, vc(m));
     V.resize(n, vb(m, false));
-    
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < m; j++) {
         cin >> G[i][j];
@@ -35,8 +34,7 @@ int main() {
         }
       }
     }
-    
-    int answer = 0;
+    int ans = 0;
     for (int i = 0; i < l.size(); i++) {
       int li = l[i].first, lj = l[i].second;
       if (!V[li][lj]) {
@@ -50,15 +48,13 @@ int main() {
           check(fi, fj + 1);
           q.pop();
         }
-        answer++;
+        ans++;
       }
     }
-    
-    cout << answer << endl;
+    cout << ans << endl;
     G.clear();
     V.clear();
     l.clear();
   }
-  
   return 0;
 }
