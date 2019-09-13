@@ -6,9 +6,11 @@ using namespace std;
 vector<int> num;
 
 bool is_palindrome() {
-  for (int i = 0; i < num.size() / 2; i++)
-    if (num[i] != num[num.size() - 1 - i])
+  for (int i = 0; i < num.size() / 2; i++) {
+    if (num[i] != num[num.size() - 1 - i]) {
       return false;
+    }
+  }
   return true;
 }
 
@@ -41,7 +43,7 @@ int main() {
     }
     
     num.clear();
-    cout << counter << "\n";
+    cout << counter << endl;
   }
   
   return 0;
