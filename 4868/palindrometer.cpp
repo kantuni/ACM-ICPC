@@ -15,21 +15,17 @@ bool is_palindrome() {
 }
 
 int main() {
-  while (1) {
+  while (true) {
     string line;
     cin >> line;
-    
     if (line == "0") {
       break;
     }
-    
     for (int i = 0; i < line.size(); i++) {
       num.push_back(line[i] - '0');
     }
-    
     int current = num.size() - 1;
     int counter = 0;
-    
     while (!is_palindrome()) {
       while (num[current] == 9) {
         for (int i = current; i < num.size(); i++) {
@@ -41,10 +37,8 @@ int main() {
       current = num.size() - 1;
       counter++;
     }
-    
     num.clear();
     cout << counter << endl;
   }
-  
   return 0;
 }
