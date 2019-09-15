@@ -7,29 +7,24 @@ int main() {
     if (s.size() == 0) {
       continue;
     }
-    
     // a
     if (s.size() == 1) {
       cout << 1 << endl;
       continue;
     }
-    
     set<char> sc;
     for (char c: s) {
       sc.insert(c);
     }
-      
     // aaa
     if (sc.size() == 1) {
       cout << 1 << endl;
       continue;
     }
-    
     if (sc.size() == s.size()) {
       cout << s.size() << endl;
       continue;
     }
-    
     // abba, abccab, ...
     for (int k = 2; k <= s.size(); k++) {
       if (s.size() % k == 0) {
@@ -43,7 +38,6 @@ int main() {
           temp += s[i];
         }
         subs.push_back(temp);
-        
         bool periodic = true;
         for (int i = 1; i < subs.size(); i++) {
           string curr = subs[i - 1];
@@ -54,7 +48,6 @@ int main() {
             break;
           }
         }
-        
         if (periodic) {
           cout << k << endl;
           break;
@@ -62,6 +55,5 @@ int main() {
       }
     }
   }
-  
   return 0;
 }
