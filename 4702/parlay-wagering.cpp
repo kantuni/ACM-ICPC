@@ -12,7 +12,8 @@ int main() {
     ld wager = 1.0 * init, mul, won, total = 0.0;
     bool lost = false;
     for (int j = 0; j < wn; j++) {
-      int ml; string res;
+      int ml;
+      string res;
       cin >> ml >> res;
       if (res == "Tie") {
         continue;
