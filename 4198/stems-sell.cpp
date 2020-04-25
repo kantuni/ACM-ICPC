@@ -19,30 +19,34 @@ bool _match(string s, string p) {
     // match the first *
     if (pi == '*') {
       string star = ms[ms.size() - 1];
-      if (s.substr(j, star.size()) != star)
+      if (s.substr(j, star.size()) != star) {
         return false;
+      }
       tms.push_back(star);
       j += star.size() - 1;
     }
     
     // given letter in l/u case
     else if (islower(pi)) {
-      if (pi != tolower(sj))
+      if (pi != tolower(sj)) {
         return false;
+      }
       tms.push_back(string(1, sj));
     }
     
     // lower-case vowel
     else if (pi == 'V') {
-      if (!islower(sj) || !isvowel(sj))
+      if (!islower(sj) || !isvowel(sj)) {
         return false;
+      }
       tms.push_back(string(1, s[j]));
     }
     
     // lower-case consonant
     else if (pi == 'C') {
-      if (!islower(sj) || isvowel(sj))
+      if (!islower(sj) || isvowel(sj)) {
         return false;
+      }
       tms.push_back(string(1, sj));
     }
   }
@@ -52,7 +56,9 @@ bool _match(string s, string p) {
 }
 
 bool match(string s, string p) {
-  if (s.size() < p.size()) return false;
+  if (s.size() < p.size()) {
+    return false;
+  }
   if (p == "*") {
     ms.push_back(s);
     return true;
@@ -70,8 +76,9 @@ bool match(string s, string p) {
     // try to match subsets
     for (int i = 1; s.size() - i >= p.size() - 1; i++) {
       ms.push_back(s.substr(0, i));
-      if (_match(s.substr(i), p.substr(1)))
+      if (_match(s.substr(i), p.substr(1))) {
         return true;
+      }
       ms.pop_back();
     }
   }
@@ -96,13 +103,17 @@ void solve() {
     int start = -1;
     for (int i = 0; i < line.size(); i++) {
       if (isalpha(line[i])) {
-        if (start == -1) start = i;
-        if (i != line.size() - 1)
+        if (start == -1) {
+          start = i;
+        }
+        if (i != line.size() - 1) {
           continue;
+        }
       }
       
-      if (start == -1)
+      if (start == -1) {
         continue;
+      }
       
       // find words
       string w;
@@ -125,7 +136,7 @@ void solve() {
       }
       start = -1;
     }
-    cout << line << "\n";
+    cout << line << endl;
   }
 }
 
@@ -152,7 +163,7 @@ int main() {
         
         if (tline == "" || tline.substr(0, 3) == "***") {
           solve();
-          cout << "***\n";
+          cout << "***" << endl;
           
           ps.clear();
           rs.clear();
@@ -164,8 +175,9 @@ int main() {
         text.push_back(tline);
       }
       
-      if (exit)
+      if (exit) {
         break;
+      }
     }
   }
   
