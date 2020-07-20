@@ -24,21 +24,21 @@ int main() {
     for (int i = 0; i < line.size(); i++) {
       num.push_back(line[i] - '0');
     }
-    int current = num.size() - 1;
-    int counter = 0;
+    int cur = num.size() - 1;
+    int ans = 0;
     while (!is_palindrome()) {
-      while (num[current] == 9) {
-        for (int i = current; i < num.size(); i++) {
+      while (num[cur] == 9) {
+        for (int i = cur; i < num.size(); i++) {
           num[i] = 0;
         }
-        current--;
+        cur--;
       }
-      num[current] += 1;
-      current = num.size() - 1;
-      counter++;
+      num[cur] += 1;
+      cur = num.size() - 1;
+      ans++;
     }
     num.clear();
-    cout << counter << endl;
+    cout << ans << endl;
   }
   return 0;
 }
