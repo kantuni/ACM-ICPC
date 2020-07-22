@@ -37,26 +37,21 @@ int main() {
   while (true) {
     int n;
     cin >> n;
-    
     if (n == 0) {
       break;
     }
-    
     set<string> s;
     for (int i = 0; i < n; i++) {
       string w;
       cin >> w;
       s.insert(w);
     }
-    
     vector<string> words(s.begin(), s.end());
     n = words.size();
-    
     vvi D(n, vi(n, INF));
     for (int i = 0; i < n; i++) {
       D[i][i] = 0;
     }
-    
     for (int i = 0; i < n; i++) {
       for (int j = i + 1; j < n; j++) {
         if (transform(words[i], words[j])) {
@@ -65,7 +60,6 @@ int main() {
         }
       }
     }
-    
     // Floyd-Warshall
     for (int k = 0; k < n; k++) {
       for (int i = 0; i < n; i++) {
@@ -74,7 +68,6 @@ int main() {
         }
       }
     }
-    
     int diameter = 0;
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
@@ -85,6 +78,5 @@ int main() {
     }
     cout << diameter + 1 << endl;
   }
-  
   return 0;
 }
