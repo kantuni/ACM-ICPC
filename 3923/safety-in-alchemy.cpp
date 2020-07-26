@@ -11,8 +11,12 @@ int solve() {
 int main() {
   string line;
   while (getline(cin, line)) {
-    if (line == "") continue;
-    if (line == "ENDOFINPUT") break;
+    if (line == "") {
+      continue;
+    }
+    if (line == "ENDOFINPUT") {
+      break;
+    }
     istringstream iss(line);
     string c1, c2; int h;
     iss >> c1 >> c2 >> h;
