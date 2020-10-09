@@ -55,7 +55,7 @@ int main() {
       }
       cout << p[i];
     }
-    cout << "\n";
+    cout << endl;
   }
   return 0;
 }
