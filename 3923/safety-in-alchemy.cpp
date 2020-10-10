@@ -5,7 +5,7 @@ unordered_map<string, int> rs;
 unordered_map<string, int> cs;
 
 int solve() {
-  // TODO:
+  // To be continued...
 }
 
 int main() {
