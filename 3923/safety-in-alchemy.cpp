@@ -18,7 +18,8 @@ int main() {
       break;
     }
     istringstream iss(line);
-    string c1, c2; int h;
+    string c1, c2;
+    int h;
     iss >> c1 >> c2 >> h;
     if (c1 == "0" and c2 == "0" and h == 0) {
       while (true) {
@@ -27,7 +28,8 @@ int main() {
         cin >> c >> a;
         if (c == "0" and a == 0) {
           int ans = solve();
-          printf("The temperature in the jar will change by at most %d degrees.\n", ans);
+          cout << "The temperature in the jar will change by at most ";
+          cout << ans << " degrees." << endl;
           rs.clear();
           cs.clear();
           break;
