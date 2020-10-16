@@ -42,9 +42,9 @@ int main() {
             swap(*it, *ith);
             break;
           }
-        } else {
-          continue;
         }
+      } else {
+        continue;
       }
     }
     for (int i = 0; i < n; i++) {
