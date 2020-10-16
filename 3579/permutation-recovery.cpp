@@ -14,18 +14,15 @@ int main() {
       cin >> a[i];
     }
     for (int i = 0; i < n; i++) {
-      int count = 0;
+      int cnt = 0;
       auto ith = find(p.begin(), p.end(), i + 1);
       for (auto it = p.begin(); it != ith; it++) {
         if (*it > *ith) {
-          count++;
+          cnt++;
         }
       }
-      if (count == a[i]) {
-        continue;
-      }
-      if (count > a[i]) {
-        int left = count - a[i];
+      if (cnt > a[i]) {
+        int left = cnt - a[i];
         for (auto it = prev(ith); it != prev(p.begin()); it--) {
           if (*it > *ith) {
             left--;
@@ -35,9 +32,8 @@ int main() {
             break;
           }
         }
-      }
-      if (count < a[i]) {
-        int left = a[i] - count;
+      } else if (cnt < a[i]) {
+        int left = a[i] - cnt;
         for (auto it = next(ith); it != p.end(); it++) {
           if (*it > *ith) {
             left--;
@@ -46,6 +42,8 @@ int main() {
             swap(*it, *ith);
             break;
           }
+        } else {
+          continue;
         }
       }
     }
