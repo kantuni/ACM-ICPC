@@ -10,8 +10,9 @@ struct Shrew {
   
   Shrew(string n, string ch) {
     name = n;
-    for (int i = 0; i < ch.size(); i++)
+    for (int i = 0; i < ch.size(); i++) {
       chs.push_back(ch[i] - '0');
+    }
   }
   
   bool operator < (const Shrew &other) const {
@@ -30,8 +31,9 @@ int main() {
       string line;
       getline(cin, line);
       
-      if (line == "***")
+      if (line == "***") {
         break;
+      }
       
       istringstream iss(line);
       string name, gender, ch;
@@ -49,8 +51,9 @@ int main() {
       string line;
       getline(cin, line);
       
-      if (line == "***")
+      if (line == "***") {
         break;
+      }
         
       istringstream iss(line);
       string name, ch;
