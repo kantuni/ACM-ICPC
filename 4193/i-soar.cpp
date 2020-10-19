@@ -52,13 +52,13 @@ int main() {
     ld l = points[0].x1, r = points[0].x2;
     
     for (unsigned long long i = 1; i < points.size(); i++) {
-      Point curr = points[i];
-      if (l < curr.x1 + EPS && r > curr.x1 - EPS) {
-        r = curr.x2 > r - EPS ? curr.x2 : r;
+      Point cur = points[i];
+      if (l < cur.x1 + EPS && r > cur.x1 - EPS) {
+        r = cur.x2 > r - EPS ? cur.x2 : r;
       } else {
         dist += r - l;
-        l = curr.x1;
-        r = curr.x2;
+        l = cur.x1;
+        r = cur.x2;
       }
     }
     
