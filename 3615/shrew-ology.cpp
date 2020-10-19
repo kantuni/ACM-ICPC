@@ -26,35 +26,28 @@ int main() {
     vector<Shrew> males, females, children;
     unordered_map<string, ull> memo;
     unordered_map<ull, vector<string> > cp;
-    
     while (true) {
       string line;
       getline(cin, line);
-      
       if (line == "***") {
         break;
       }
-      
       istringstream iss(line);
       string name, gender, ch;
       iss >> name >> gender >> ch;
       Shrew temp(name, ch);
-      
       if (gender == "M") {
         males.push_back(temp);
       } else {
         females.push_back(temp);
       }
     }
-    
     while (true) {
       string line;
       getline(cin, line);
-      
       if (line == "***") {
         break;
       }
-        
       istringstream iss(line);
       string name, ch;
       iss >> name >> ch;
@@ -62,16 +55,13 @@ int main() {
       children.push_back(temp);
       memo.insert(make_pair(ch, children.size() - 1));
     }
-    
     sort(females.begin(), females.end());
     sort(males.begin(), males.end());
-    
     for (ull i = 0; i < females.size(); i++) {
       vector<int> f = females[i].chs;
       for (ull j = 0; j < males.size(); j++) {
         vector<int> m = males[j].chs;
         vector<int> comb(types.size());
-        
         for (int i = 0; i < types.size(); i++) {
           if (types[i] == 'R') {
             comb[i] = f[i] & m[i];
@@ -79,19 +69,16 @@ int main() {
             comb[i] = f[i] | m[i];
           }
         }
-        
         string h = "";
         for (int i = 0; i < types.size(); i++) {
           h += to_string(comb[i]);
         }
-        
         if (memo.count(h) > 0) {
           ull index = memo[h];
           cp[index].push_back(females[i].name + "-" + males[j].name);
         }
       }
     }
-    
     for (ull i = 0; i < children.size(); i++) {
       cout << children[i].name << " by ";
       if (cp.count(i) > 0) {
@@ -104,12 +91,9 @@ int main() {
       }
       cout << endl;
     }
-    
-    
     males.clear();
     females.clear();
     children.clear();
   }
-  
   return 0;
 }
