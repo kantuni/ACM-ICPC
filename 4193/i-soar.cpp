@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
+#define EPS 1e-9
 using namespace std;
 
 typedef long double ld;
-#define EPS 1e-9
 
 struct Point {
   ld x1, x2;
@@ -13,7 +13,9 @@ struct Point {
   }
   
   bool operator < (Point p) const {
-    if (x1 < p.x1 + EPS) return true;
+    if (x1 < p.x1 + EPS) {
+      return true;
+    }
     return x2 > p.x2 - EPS;
   }
 };
@@ -23,16 +25,18 @@ int main() {
     ld L;
     cin >> L;
     
-    if (!(L > 0))
+    if (L <= 0) {
       break;
+    }
     
     vector<Point> points;
     while (true) {
       ld x1, x2;
       cin >> x1 >> x2;
       
-      if (x1 > x2 - EPS)
+      if (x1 > x2 - EPS) {
         break;
+      }
         
       Point p(x1, x2);
       points.push_back(p);
