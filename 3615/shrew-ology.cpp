@@ -1,12 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef unsigned long long ull;
-typedef vector<int> vi;
-
 struct Shrew {
   string name;
-  vi chs;
+  vector<int> chs;
   
   Shrew(string n, string ch) {
     name = n;
@@ -24,8 +21,8 @@ int main() {
   string types;
   while (getline(cin, types)) {
     vector<Shrew> males, females, children;
-    unordered_map<string, ull> memo;
-    unordered_map<ull, vector<string> > cp;
+    unordered_map<string, unsigned long long> memo;
+    unordered_map<unsigned long long, vector<string> > cp;
     while (true) {
       string line;
       getline(cin, line);
@@ -57,9 +54,9 @@ int main() {
     }
     sort(females.begin(), females.end());
     sort(males.begin(), males.end());
-    for (ull i = 0; i < females.size(); i++) {
+    for (unsigned long long i = 0; i < females.size(); i++) {
       vector<int> f = females[i].chs;
-      for (ull j = 0; j < males.size(); j++) {
+      for (unsigned long long j = 0; j < males.size(); j++) {
         vector<int> m = males[j].chs;
         vector<int> comb(types.size());
         for (int i = 0; i < types.size(); i++) {
@@ -74,15 +71,15 @@ int main() {
           h += to_string(comb[i]);
         }
         if (memo.count(h) > 0) {
-          ull index = memo[h];
+          unsigned long long index = memo[h];
           cp[index].push_back(females[i].name + "-" + males[j].name);
         }
       }
     }
-    for (ull i = 0; i < children.size(); i++) {
+    for (unsigned long long i = 0; i < children.size(); i++) {
       cout << children[i].name << " by ";
       if (cp.count(i) > 0) {
-        for (ull j = 0; j < cp[i].size(); j++) {
+        for (unsigned long long j = 0; j < cp[i].size(); j++) {
           cout << cp[i][j];
           if (j != cp[i].size() - 1) {
             cout << " or ";
