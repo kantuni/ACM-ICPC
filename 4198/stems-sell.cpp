@@ -1,10 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef vector<string> vs;
-
-vs ps, rs, ms;
-vs text;
+vector<string> ps, rs, ms, text;
 
 bool isvowel(char c) {
   return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
@@ -12,7 +9,7 @@ bool isvowel(char c) {
 
 // without the first *
 bool _match(string s, string p) {
-  vs tms;
+  vector<string> tms;
   for (int i = 0, j = 0; i < p.size(); i++, j++) {
     char pi = p[i], sj = s[j];
     
