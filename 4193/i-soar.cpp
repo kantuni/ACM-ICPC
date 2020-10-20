@@ -24,33 +24,26 @@ int main() {
   while (true) {
     ld L;
     cin >> L;
-    
     if (L <= 0) {
       break;
     }
-    
     vector<Point> points;
     while (true) {
       ld x1, x2;
       cin >> x1 >> x2;
-      
       if (x1 > x2 - EPS) {
         break;
       }
-        
       Point p(x1, x2);
       points.push_back(p);
     }
-    
     if (points.size() == 0) {
       printf("The total planting length is %.1Lf\n", L);
       continue;
     }
-    
     ld dist = 0.0;
     sort(points.begin(), points.end());
     ld l = points[0].x1, r = points[0].x2;
-    
     for (unsigned long long i = 1; i < points.size(); i++) {
       Point cur = points[i];
       if (l < cur.x1 + EPS && r > cur.x1 - EPS) {
@@ -61,10 +54,8 @@ int main() {
         r = cur.x2;
       }
     }
-    
     ld ans = L - (dist + r - l);
     printf("The total planting length is %.1Lf\n", ans);
   }
-  
   return 0;
 }
