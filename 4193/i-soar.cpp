@@ -2,12 +2,10 @@
 #define EPS 1e-9
 using namespace std;
 
-typedef long double ld;
-
 struct Point {
-  ld x1, x2;
+  long double x1, x2;
   
-  Point(ld x1, ld x2) {
+  Point(long double x1, long double x2) {
     this->x1 = x1;
     this->x2 = x2;
   }
@@ -22,14 +20,14 @@ struct Point {
 
 int main() {
   while (true) {
-    ld L;
+    long double L;
     cin >> L;
     if (L <= 0) {
       break;
     }
     vector<Point> points;
     while (true) {
-      ld x1, x2;
+      long double x1, x2;
       cin >> x1 >> x2;
       if (x1 > x2 - EPS) {
         break;
@@ -41,9 +39,9 @@ int main() {
       printf("The total planting length is %.1Lf\n", L);
       continue;
     }
-    ld dist = 0.0;
+    long double dist = 0.0;
     sort(points.begin(), points.end());
-    ld l = points[0].x1, r = points[0].x2;
+    long double l = points[0].x1, r = points[0].x2;
     for (unsigned long long i = 1; i < points.size(); i++) {
       Point cur = points[i];
       if (l < cur.x1 + EPS && r > cur.x1 - EPS) {
@@ -54,7 +52,7 @@ int main() {
         r = cur.x2;
       }
     }
-    ld ans = L - (dist + r - l);
+    long double ans = L - (dist + r - l);
     printf("The total planting length is %.1Lf\n", ans);
   }
   return 0;
