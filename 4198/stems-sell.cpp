@@ -12,7 +12,6 @@ bool _match(string s, string p) {
   vector<string> tms;
   for (int i = 0, j = 0; i < p.size(); i++, j++) {
     char pi = p[i], sj = s[j];
-    
     // match the first *
     if (pi == '*') {
       string star = ms[ms.size() - 1];
@@ -22,7 +21,6 @@ bool _match(string s, string p) {
       tms.push_back(star);
       j += star.size() - 1;
     }
-    
     // given letter in l/u case
     else if (islower(pi)) {
       if (pi != tolower(sj)) {
@@ -30,7 +28,6 @@ bool _match(string s, string p) {
       }
       tms.push_back(string(1, sj));
     }
-    
     // lower-case vowel
     else if (pi == 'V') {
       if (!islower(sj) || !isvowel(sj)) {
@@ -38,7 +35,6 @@ bool _match(string s, string p) {
       }
       tms.push_back(string(1, s[j]));
     }
-    
     // lower-case consonant
     else if (pi == 'C') {
       if (!islower(sj) || isvowel(sj)) {
@@ -47,7 +43,6 @@ bool _match(string s, string p) {
       tms.push_back(string(1, sj));
     }
   }
-  
   ms.insert(ms.end(), tms.begin(), tms.end());
   return true;
 }
@@ -60,7 +55,6 @@ bool match(string s, string p) {
     ms.push_back(s);
     return true;
   }
-  
   // replace digits here
   for (int i = 0; i < p.size(); i++) {
     if (p[i] >= '1' && p[i] <= '9') {
@@ -68,7 +62,6 @@ bool match(string s, string p) {
       p[i] = p[index - 1];
     }
   }
-  
   if (p[0] == '*') {
     // try to match subsets
     for (int i = 1; s.size() - i >= p.size() - 1; i++) {
@@ -107,11 +100,9 @@ void solve() {
           continue;
         }
       }
-      
       if (start == -1) {
         continue;
       }
-      
       // find words
       string w;
       if (i == line.size() - 1 && isalpha(line[i])) {
@@ -119,7 +110,6 @@ void solve() {
       } else {
         w = line.substr(start, i - start);
       }
-      
       // match and replace
       for (int j = 0; j < ps.size(); j++) {
         if (match(w, ps[j])) {
@@ -141,7 +131,6 @@ int main() {
   while (true) {
     string line;
     getline(cin, line);
-    
     if (line != "") {
       istringstream iss(line);
       string p, arrow, r;
@@ -153,31 +142,24 @@ int main() {
       while (true) {
         string tline;
         getline(cin, tline);
-        
         if (tline.substr(0, 3) == "***") {
           exit = true;
         }
-        
         if (tline == "" || tline.substr(0, 3) == "***") {
           solve();
           cout << "***" << endl;
-          
           ps.clear();
           rs.clear();
           ms.clear();
           text.clear();
           break;
         }
-        
         text.push_back(tline);
       }
-      
       if (exit) {
         break;
       }
     }
   }
-  
-  
   return 0;
 }
