@@ -13,6 +13,7 @@ struct State {
   string hash;
   
   State() {}
+
   State(vvc board, vii pieces) {
     this->board = board;
     this->pieces = pieces;
