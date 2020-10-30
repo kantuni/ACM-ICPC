@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long double ld;
-
 int main() {
   int n;
   cin >> n;
   for (int i = 0; i < n; i++) {
     int init, wn;
     cin >> init >> wn;
-    ld wager = 1.0 * init, mul, won, total = 0.0;
+    long double wager = 1.0 * init, mul, won, total = 0.0;
     bool lost = false;
     for (int j = 0; j < wn; j++) {
       int ml;
