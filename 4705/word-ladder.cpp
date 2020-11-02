@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
+#define INF (int) 1e7
 using namespace std;
 
 typedef vector<int> vi;
 typedef vector<vi> vvi;
-#define INF (int) 1e7
 
 bool transform(string a, string b) {
   if (a.size() < b.size()) {
