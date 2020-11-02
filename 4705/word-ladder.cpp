@@ -2,9 +2,6 @@
 #define INF (int) 1e7
 using namespace std;
 
-typedef vector<int> vi;
-typedef vector<vi> vvi;
-
 bool transform(string a, string b) {
   if (a.size() < b.size()) {
     return transform(b, a);
@@ -48,7 +45,7 @@ int main() {
     }
     vector<string> words(s.begin(), s.end());
     n = words.size();
-    vvi D(n, vi(n, INF));
+    vector<vector<int> > D(n, vector<int>(n, INF));
     for (int i = 0; i < n; i++) {
       D[i][i] = 0;
     }
