@@ -65,17 +65,15 @@ int main() {
   while (true) {
     int n;
     cin >> n;
-    
-    if (n == 0)
+    if (n == 0) {
       break;
-    
+    }
     vii points(n);
     for (int i = 0; i < n; i++) {
       int x, y;
       cin >> x >> y;
       points[i] = ii(x, y);
     }
-    
     Graph g(1000);
     for (int i = 0; i < n; i++) {
       for (int j = i + 1; j < n; j++) {
@@ -84,10 +82,8 @@ int main() {
         g.addEdge(i, j, hypot(dx, dy));
       }
     }
-    
     double ans = g.Prim();
     printf("%.2f\n", ans);
   }
-  
   return 0;
 }
