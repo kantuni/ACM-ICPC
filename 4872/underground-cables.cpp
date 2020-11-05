@@ -13,7 +13,7 @@ struct Graph {
     double weight;
     
     bool operator < (const Edge &a) const {
-      // hack: invert sign
+      // HACK: invert sign
       return weight >= a.weight;
     }
   };
