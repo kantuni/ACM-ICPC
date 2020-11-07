@@ -41,6 +41,7 @@ def w(i, j):
     for word in words[i: j + 1]:
         # length of a word + blank space
         width += len(word) + 1
+
     # remove last blank space
     width -= 1
 
@@ -62,13 +63,13 @@ def r(i, j):
 
 def c(i, k, last):
     """
-    Let C(i, k, last) denote minimum raggedness of a line k containing ith word ignoring last words.
+    Let C(i, k, last) denote the minimum raggedness of a line k containing `i`th word ignoring all `last` words.
     Then C(i, k, last) = min(r(i, i) + C(i + 1, k + 1, last), r(i, i + 1) + C(i + 2, k + 1, last), ...)
 
     :param i: {int} starting position
     :param k: {int} line
     :param last: {int} number of words used in the last line
-    :return: {tuple} a minimum total raggedness and an index of the minimum value (the winner)
+    :return: {tuple} the minimum total raggedness and the index of the minimum value (the winner)
     """
     global words
     raggedness = []
@@ -82,11 +83,12 @@ def c(i, k, last):
         # add value to memo
         if not memo.get('{0}, {1}'.format(l + 1, k + 1)):
             memo['{0}, {1}'.format(l + 1, k + 1)] = c(l + 1, k + 1, last)
+
         # calculate all raggedness values
         raggedness.append(r(i, l) + memo['{0}, {1}'.format(l + 1, k + 1)][0])
         l += 1
 
-    # find a total minimum raggedness
+    # find the total minimum raggedness
     minimum = min(raggedness)
     memo['{0}, {1}'.format(i, k)] = minimum, raggedness.index(minimum)
     return minimum, raggedness.index(minimum)
@@ -103,6 +105,7 @@ def minimize_total_raggedness():
 
     # clean memo
     memo = {}
+    
     # set the min value to a raggedness with 1 last word
     last = 1
     minimum = c(0, 0, last)[0]
@@ -113,6 +116,7 @@ def minimize_total_raggedness():
         if 0 < w(len(words) - i - 1, len(words) - 1) <= L:
             # clean memo
             memo = {}
+            
             # update minimum value
             if minimum > c(0, 0, i)[0]:
                 minimum = c(0, 0, i)[0]
@@ -128,7 +132,7 @@ def minimize_total_raggedness():
 
 def backtracking():
     """
-    Build a string with a minimum total raggedness from a memo table
+    Build a string with a minimum total raggedness from a memo table.
 
     :return: {str} string with minimum total raggedness
     """
@@ -144,8 +148,10 @@ def backtracking():
         # add words to the appropriate line
         for word in words[i: i + winner_index + 1]:
             string += word + ' '
+        
         # remove trailing space
         string = string[:-1]
+        
         # move to the next line
         string += '\n'
 
@@ -184,9 +190,11 @@ if __name__ == '__main__':
 
         while number_of_lines > 0:
             words_in_line = input().split()
+            
             # terminate by an empty line
             if not words_in_line:
                 break
+
             # add words from the new line
             words.extend(words_in_line)
             number_of_lines -= 1
