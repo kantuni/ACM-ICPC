@@ -6,18 +6,15 @@ int main() {
     int n;
     cin >> n;
     cin.ignore();
-    
     if (n == 0) {
       break;
     }
-    
     vector<string> lines;
     for (int i = 0; i < n; i++) {
       string line;
       getline(cin, line);
       lines.push_back(line);
     }
-    
     int start = 0;
     for (int i = 0; i < lines.size(); i++) {
       bool found = false;
@@ -28,15 +25,11 @@ int main() {
           break;
         }
       }
-      
       if (!found) {
         start = max(start, (int) lines[i].size());
       }
     }
-    
-    // answer
-    cout << start + 1 << "\n";
+    cout << start + 1 << endl;
   }
-  
   return 0;
 }
