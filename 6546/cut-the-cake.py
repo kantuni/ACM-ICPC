@@ -175,10 +175,8 @@ if __name__ == '__main__':
             print(count)
             continue
 
-        # construct a circle
         c = Circle(Point(cx, cy), cr)
 
-        # construct lines
         lines = []
         while n > 0:
             x1, y1, x2, y2 = input().split()
@@ -199,11 +197,10 @@ if __name__ == '__main__':
                         if c.point_in_circle(lip):
                             count += 1
 
-                # count = # of intersections inside the circle + 1
+                # the number of intersections inside the circle
                 count += 1
 
                 # keep the processed lines that intersected the circle
                 processed_lines.append(l)
 
-        # print the answer
         print(count)
