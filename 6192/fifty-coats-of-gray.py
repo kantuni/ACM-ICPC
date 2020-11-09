@@ -9,10 +9,9 @@ if __name__ == '__main__':
         if params == [0, 0, 0, 0, 0, 0]:
             break
 
-        # input data
         n, w, l, h, area, m = params
-
         not_painted_area = 0
+
         while m > 0:
             windows_and_doors = map(int, input().split())
             not_painted_area += windows_and_doors[0] * windows_and_doors[1]
