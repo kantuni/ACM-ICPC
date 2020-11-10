@@ -49,7 +49,6 @@ class Line {
       if (is_parallel(l)) {
         return Point(NAN, NAN);
       }
-
       long double x, y;
       if (!isnan(this->m) && !isnan(l.m)) {
         x = (l.b - this->b) / (this->m - l.m);
@@ -61,7 +60,6 @@ class Line {
         x = l.a;
         y = this->m * x + this->b;
       }
-
       return Point(x, y);
     }
 
@@ -72,7 +70,6 @@ class Line {
         if (p.y == this->m * p.x + this->b) {
           return Line(NAN, NAN, NAN);
         }
-
         if (this->m == 0) {
           // vertical line
           return Line(NAN, 0, p.x);
@@ -117,7 +114,6 @@ class Circle {
       Line perpendicular = l.perpendicular(Point(this->x, this->y));
       // line through the center of the circle
       bool ltc = isnan(perpendicular.m) && isnan(perpendicular.b) && isnan(perpendicular.a);
-
       if (ltc) {
         return true;
       } else {
@@ -132,23 +128,18 @@ int main() {
   while (true) {
     long long r, x, y, n;
     cin >> r >> x >> y >> n;
-
     if (r == 0 and x == 0 and y == 0 and n == 0) {
       return 0;
     }
-
     long long ans = 1;
-
     // no lines
     if (n == 0) {
       cout << ans << endl;
       continue;
     }
-
     long long x1, y1, x2, y2;
     vector<Line> lines = {};
     Circle c = Circle(x, y, r);
-
     // construct lines
     while (n > 0) {
       cin >> x1 >> y1 >> x2 >> y2;
@@ -158,7 +149,6 @@ int main() {
       lines.push_back(l);
       n--;
     }
-
     vector<Line> processed_lines = {};
     for (auto &l: lines) {
       // only lines that intersect the circle
@@ -173,15 +163,12 @@ int main() {
             }
           }
         }
-
         // number of intersections inside the circle + 1
         ans++;
-
         // keep the processed lines that intersected the circle
         processed_lines.push_back(l);
       }
     }
-
     cout << ans << endl;
   }
 }
