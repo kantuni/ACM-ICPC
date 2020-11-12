@@ -14,8 +14,8 @@ vii l; // land
 queue<ii> q;
 
 void check(int i, int j) {
-  bool oof = i >= 0 and i < G.size() and j >= 0 and j < G[0].size();
-  if (oof and G[i][j] != 'W' and !V[i][j]) {
+  bool oof = i >= 0 && i < G.size() && j >= 0 && j < G[0].size();
+  if (oof && G[i][j] != 'W' && !V[i][j]) {
     q.push(ii(i, j));
     V[i][j] = true;
   }
