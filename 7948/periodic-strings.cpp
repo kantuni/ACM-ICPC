@@ -40,10 +40,10 @@ int main() {
         subs.push_back(temp);
         bool periodic = true;
         for (int i = 1; i < subs.size(); i++) {
-          string curr = subs[i - 1];
-          curr = curr[curr.size() - 1] + curr;
-          curr = curr.substr(0, curr.size() - 1);
-          if (subs[i] != curr) {
+          string cur = subs[i - 1];
+          cur = cur[cur.size() - 1] + cur;
+          cur = cur.substr(0, cur.size() - 1);
+          if (subs[i] != cur) {
             periodic = false;
             break;
           }
