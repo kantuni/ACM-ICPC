@@ -27,7 +27,7 @@ def find_y(start, end):
     return find_y(y, end)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     while True:
         params = map(float, input().split())
         if params == [0, 0, 0, 0, 0]:
@@ -35,4 +35,4 @@ if __name__ == '__main__':
 
         d, h, x, n1, n2 = params
         answer = 90 if x == 0 else round(math.degrees(math.atan(d / find_y(0, x))), 2)
-        print('{:.2f}'.format(answer))
+        print("{:.2f}".format(answer))
