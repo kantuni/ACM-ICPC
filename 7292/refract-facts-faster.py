@@ -34,7 +34,7 @@ def find_phi(start, end):
     return find_phi(phi, end)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     while True:
         params = map(float, input().split())
         if params == [0, 0, 0, 0, 0]:
@@ -42,4 +42,4 @@ if __name__ == '__main__':
 
         d, h, x, n1, n2 = params
         answer = round(find_phi(0, 90), 2)
-        print('{:.2f}'.format(answer))
+        print("{:.2f}".format(answer))
