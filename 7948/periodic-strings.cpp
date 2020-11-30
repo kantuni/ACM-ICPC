@@ -29,15 +29,15 @@ int main() {
     for (int k = 2; k <= s.size(); k++) {
       if (s.size() % k == 0) {
         vector<string> subs;
-        string temp;
+        string tmp;
         for (int i = 0; i < s.size(); i++) {
           if (i > 0 && i % k == 0) {
-            subs.push_back(temp);
-            temp = "";
+            subs.push_back(tmp);
+            tmp = "";
           }
-          temp += s[i];
+          tmp += s[i];
         }
-        subs.push_back(temp);
+        subs.push_back(tmp);
         bool periodic = true;
         for (int i = 1; i < subs.size(); i++) {
           string cur = subs[i - 1];
