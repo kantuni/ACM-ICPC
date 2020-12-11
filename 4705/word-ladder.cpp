@@ -65,15 +65,15 @@ int main() {
         }
       }
     }
-    int diameter = 0;
+    int diam = 0;
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         if (D[i][j] != INF) {
-          diameter = max(diameter, D[i][j]);
+          diam = max(diam, D[i][j]);
         }
       }
     }
-    cout << diameter + 1 << endl;
+    cout << diam + 1 << endl;
   }
   return 0;
 }
